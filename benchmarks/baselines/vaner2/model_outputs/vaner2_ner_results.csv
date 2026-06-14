@@ -1,0 +1,13 @@
+dataset,system,task,criterion,tp,fp,fn,precision,recall,f1,gold_file,pred_file
+AnatEM,VANER2,NER,exact_span,282,556,749,0.33651551312649164,0.2735208535402522,0.3017656500802568,benchmarks/data/evaluation/AnatEM/test.xml,benchmarks/baselines/vaner2/model_outputs/AnatEM_test.xml
+AnatEM,VANER2,NER,relaxed_span,752,86,279,0.8973747016706444,0.7293889427740058,0.8047084002140182,benchmarks/data/evaluation/AnatEM/test.xml,benchmarks/baselines/vaner2/model_outputs/AnatEM_test.xml
+BioID,VANER2,NER,exact_span,508,1626,586,0.2380506091846298,0.4643510054844607,0.31474597273853777,benchmarks/data/evaluation/BioID/test.xml,benchmarks/baselines/vaner2/model_outputs/BioID_test.xml
+BioID,VANER2,NER,relaxed_span,727,1407,367,0.3406747891283974,0.6645338208409507,0.45043370508054525,benchmarks/data/evaluation/BioID/test.xml,benchmarks/baselines/vaner2/model_outputs/BioID_test.xml
+CRAFT,VANER2,NER,exact_span,281,1093,1468,0.20451237263464336,0.16066323613493425,0.17995517130963815,benchmarks/data/evaluation/CRAFT/test.xml,benchmarks/baselines/vaner2/model_outputs/CRAFT_test.xml
+CRAFT,VANER2,NER,relaxed_span,880,494,869,0.6404657933042213,0.5031446540880503,0.5635606788344542,benchmarks/data/evaluation/CRAFT/test.xml,benchmarks/baselines/vaner2/model_outputs/CRAFT_test.xml
+Celllink,VANER2,NER,exact_span,1300,1535,1934,0.4585537918871252,0.40197897340754485,0.4284066567803592,benchmarks/data/evaluation/Celllink/test.xml,benchmarks/baselines/vaner2/model_outputs/Celllink_test.xml
+Celllink,VANER2,NER,relaxed_span,2520,315,714,0.8888888888888888,0.7792207792207793,0.8304498269896193,benchmarks/data/evaluation/Celllink/test.xml,benchmarks/baselines/vaner2/model_outputs/Celllink_test.xml
+JNLPBA,VANER2,NER,exact_span,532,904,1377,0.37047353760445684,0.2786799371398638,0.31808669656203287,benchmarks/data/evaluation/JNLPBA/test.xml,benchmarks/baselines/vaner2/model_outputs/JNLPBA_test.xml
+JNLPBA,VANER2,NER,relaxed_span,1238,198,671,0.862116991643454,0.6485070717653222,0.7402092675635277,benchmarks/data/evaluation/JNLPBA/test.xml,benchmarks/baselines/vaner2/model_outputs/JNLPBA_test.xml
+Macro average,VANER2,NER,exact_span,,,,0.3216211648874694,0.31583880114141116,0.308592029494165,,
+Macro average,VANER2,NER,relaxed_span,,,,0.7259042329271213,0.6649590537378216,0.6778723757364329,,
