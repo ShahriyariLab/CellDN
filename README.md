@@ -1,7 +1,7 @@
 # CellExLink:  cell-type extraction tool
 ![License: Apache 2.0](https://img.shields.io/github/license/ShahriyariLab/CellExLink)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ShahriyariLab/CellExLink/ci.yml?branch=main)
-![Language](https://img.shields.io/github/languages/top/ssciwr/mailcom)
+[![CI](https://github.com/ShahriyariLab/CellExLink/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ShahriyariLab/CellExLink/actions/workflows/ci.yml)
+![Language](https://img.shields.io/github/languages/top/ShahriyariLab/CellExLink)
 
 
 CellExLink is a biomedical text-mining package for cell-type named entity
@@ -57,9 +57,7 @@ Use of these datasets is subject to the license and terms specified by the origi
 
 ## Citation
 
-If you use CellExLink in a manuscript, please include a formal software citation in your reference list for the exact released version you used, for example `CellExLink v0.1.0`. This software citation is separate from citing any companion article about the method.
-
-The repository includes a standard [CITATION.cff](CITATION.cff) file that GitHub and citation managers can use to generate a versioned software reference.
+To reference the `cellexlink` package in any publication, please use the information provided in the [citation file](CITATION.cff).
 
 
 ## Getting in touch

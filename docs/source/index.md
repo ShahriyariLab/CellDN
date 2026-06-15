@@ -1,6 +1,6 @@
 ![License: Apache 2.0](https://img.shields.io/github/license/ShahriyariLab/CellExLink)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ShahriyariLab/CellExLink/ci.yml?branch=main)
-![Language](https://img.shields.io/github/languages/top/ssciwr/mailcom)
+[![CI](https://github.com/ShahriyariLab/CellExLink/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ShahriyariLab/CellExLink/actions/workflows/ci.yml)
+![Language](https://img.shields.io/github/languages/top/ShahriyariLab/CellExLink)
 
 
 # CellExLink documentation
