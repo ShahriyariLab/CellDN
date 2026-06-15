@@ -1,7 +1,5 @@
-![License: Apache 2.0](https://img.shields.io/github/license/ssciwr/mailcom)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ssciwr/mailcom/ci.yml?branch=main)
-![codecov](https://img.shields.io/codecov/c/github/ssciwr/mailcom)
-![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ssciwr_mailcom&metric=alert_status)
+![License: Apache 2.0](https://img.shields.io/github/license/ShahriyariLab/CellExLink)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ShahriyariLab/CellExLink/ci.yml?branch=main)
 ![Language](https://img.shields.io/github/languages/top/ssciwr/mailcom)
 
 

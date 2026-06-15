@@ -59,6 +59,12 @@ class RecognizedMention:
     def to_dict(self) -> dict[str, Any]:
         return _compact_dict(self)
 
+    @property
+    def length(self) -> int | None:
+        if self.start is None or self.end is None:
+            return None
+        return self.end - self.start
+
 
 @dataclass(slots=True)
 class NormalizedMention:
@@ -78,6 +84,12 @@ class NormalizedMention:
 
     def to_dict(self) -> dict[str, Any]:
         return _compact_dict(self)
+
+    @property
+    def length(self) -> int | None:
+        if self.start is None or self.end is None:
+            return None
+        return self.end - self.start
 
 
 @dataclass(slots=True)
@@ -103,8 +115,34 @@ class ExtractionResult:
     def to_dict(self) -> dict[str, Any]:
         return _compact_dict(self)
 
+    @property
+    def length(self) -> int | None:
+        if self.start is None or self.end is None:
+            return None
+        return self.end - self.start
 
-MentionInput = str | RecognizedMention | ExtractionResult | Mapping[str, Any]
+
+@dataclass(slots=True)
+class MentionInput:
+    """One lightweight mention input for NEN-only normalization."""
+
+    text: str
+    start: int | None = None
+    end: int | None = None
+    document_id: str | None = None
+    entity_type: str | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        return _compact_dict(self)
+
+    @property
+    def length(self) -> int | None:
+        if self.start is None or self.end is None:
+            return None
+        return self.end - self.start
+
+
+MentionLike = str | MentionInput | RecognizedMention | ExtractionResult | Mapping[str, Any]
 
 
 @dataclass(slots=True)
@@ -323,7 +361,7 @@ class CellExLinkPipeline:
 
     def normalize_mentions(
         self,
-        mentions: Iterable[MentionInput],
+        mentions: Iterable[MentionLike],
         *,
         document_text: str | None = None,
         document_id: str = "doc0",
@@ -546,7 +584,16 @@ class CellExLinkPipeline:
 # ----------------------------------------------------------------------
 # Mention coercion helpers
 # ----------------------------------------------------------------------
-def _coerce_mention_input(item: MentionInput, *, default_document_id: str) -> _MentionMeta:
+def _coerce_mention_input(item: MentionLike, *, default_document_id: str) -> _MentionMeta:
+    if isinstance(item, MentionInput):
+        return _MentionMeta(
+            mention=item.text,
+            document_id=item.document_id or default_document_id,
+            start=item.start,
+            end=item.end,
+            entity_type=item.entity_type,
+        )
+
     if isinstance(item, RecognizedMention):
         return _MentionMeta(
             mention=item.mention,
@@ -661,6 +708,7 @@ __all__ = [
     "CellExLinkPipeline",
     "ExtractionResult",
     "MentionInput",
+    "MentionLike",
     "NormalizedMention",
     "RecognizedMention",
     "write_predictions_jsonl",
