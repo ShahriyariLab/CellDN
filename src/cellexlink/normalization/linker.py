@@ -1,8 +1,4 @@
 """Cell Ontology linker for CellExLink.
-
-This file is the reproducibility-first normalizer.  It keeps the NEN behavior
-of the original CellExLink code while presenting a small reusable API for the
-SoftwareX package.
 """
 
 from __future__ import annotations
@@ -185,10 +181,6 @@ def has_parenthetical_relation(left: object, right: object) -> float:
 
 def is_sentence_transformers_model(model_name_or_path: str | Path) -> bool:
     """Return True only for local SentenceTransformer directories.
-
-    This intentionally follows the original CellExLink normalizer: a model is
-    treated as SentenceTransformer only when a local ``modules.json`` exists.
-    Plain Hugging Face checkpoints are loaded with AutoTokenizer/AutoModel.
     """
 
     model_path = Path(model_name_or_path)
@@ -691,10 +683,6 @@ class CellOntologyLinker:
             batch_size=self.batch_size,
         )
         sims = cosine_similarity_matrix(query_rep, self.dictionary_embeddings)[0]
-
-        # Original code used scipy cosine distance and stored -distance as the
-        # embedding score.  Since cosine_distance = 1 - cosine_similarity, the
-        # compatible score is cosine_similarity - 1.
         original_embedding_scores = sims - 1.0
         top_indices = np.argsort(original_embedding_scores)[-initial_k:][::-1]
 
@@ -848,9 +836,6 @@ def normalize_bioc(
     verbose: bool = True,
 ) -> Path:
     """Normalize cell-type annotations in a BioC XML file.
-
-    Parameters ``cell_types`` and ``abbreviations`` are kept for compatibility
-    with the old scripts and the current SoftwareX pipeline wrapper.
     """
 
     input_xml = Path(input_xml)

@@ -1,12 +1,4 @@
 """Cell Ontology alias loading for CellExLink NEN.
-
-The default loader is deliberately strict.  It expects the same JSONL schema
-used by the original CellExLink normalizer:
-
-    norm_concept_id, norm_preferred_label, synonyms, namespace
-
-Keeping the schema and alias order stable is important for reproducing NEN
-results from the original code.
 """
 
 from __future__ import annotations
@@ -65,16 +57,7 @@ def load_cell_ontology_terms(
     *,
     namespace_filter: Optional[str | Iterable[str]] = None,
 ) -> tuple[list[TermEntry], dict[str, ConceptMetadata]]:
-    """Load ontology aliases using the original CellExLink behavior.
-
-    Notes
-    -----
-    * Preferred labels are added before synonyms.
-    * Alias strings are plural-normalized before embedding.
-    * Term entries are not deduplicated, so retrieval order remains compatible
-      with the original JSONL order.
-    * Alternative JSON field names are intentionally not accepted here; this is
-      a benchmark/reproducibility path, not a general ontology converter.
+    """Load ontology aliases. 
     """
 
     path = Path(ontology_path)

@@ -5,14 +5,16 @@ include pyproject.toml
 include MANIFEST.in
 
 recursive-include src/cellexlink/resources *.tsv *.jsonl
-recursive-include examples *.py *.txt *.xml *.json *.jsonl *.md
-recursive-include benchmarks *.py *.md *.txt
-recursive-include tests *.py
 
 prune models
 prune data
 prune benchmark_outputs
+prune benchmarks
+prune docs
+prune examples
 prune outputs
+prune tests
+prune training
 prune dist
 prune build
 prune .venv

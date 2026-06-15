@@ -86,12 +86,6 @@ def _build_training_args(
     fp16: bool,
     overwrite_output_dir: bool,
 ) -> TrainingArguments:
-    """
-    Create TrainingArguments with conservative defaults.
-
-    We evaluate manually after training instead of depending on version-specific
-    evaluation_strategy/eval_strategy behavior.
-    """
     return TrainingArguments(
         output_dir=str(output_dir),
         do_train=True,

@@ -216,12 +216,6 @@ benchmarks/baselines/*/predictions/
 benchmarks/baselines/*/cache/
 
 # -----------------------------------------------------------------------------
-# Docker and local container artifacts
-# -----------------------------------------------------------------------------
-.docker/
-docker/.cache/
-
-# -----------------------------------------------------------------------------
 # Project-specific packaged resources to keep tracked
 # -----------------------------------------------------------------------------
 # These files are part of the installable CellExLink package and should remain
@@ -237,6 +231,8 @@ docker/.cache/
 *.tgz
 *.whl
 
-#documentation
-#-----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Documentation build outputs
+# -----------------------------------------------------------------------------
+_build/
 docs/build/

@@ -1,7 +1,7 @@
 """Public Python API for CellExLink.
 
 The :class:`CellExLinkPipeline` class is intentionally the only high-level
-object users need for the SoftwareX release. It exposes the three supported
+object users. It exposes the three supported
 workflows:
 
 1. NER only: detect cell-type mentions.

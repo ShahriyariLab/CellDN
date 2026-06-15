@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use CellExLink, please cite the exact software version you used."
+type: software
+title: "CellExLink"
+version: "0.1.0"
+authors:
+  - name: "Shahriyari Lab and CellExLink contributors"
+repository-code: "https://github.com/ShahriyariLab/CellExLink"
+url: "https://github.com/ShahriyariLab/CellExLink"
+license: "Apache-2.0"

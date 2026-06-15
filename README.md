@@ -47,7 +47,7 @@ Additional repository README files are available for development  workflows:
 
 - Benchmark evaluation: [benchmarks/README.md](https://github.com/ShahriyariLab/CellExLink/blob/main/benchmarks/README.md)
 
--Test suite: [tests/README.md](https://github.com/ShahriyariLab/CellExLink/blob/main/tests/README.md)
+- Test suite: [tests/README.md](https://github.com/ShahriyariLab/CellExLink/blob/main/tests/README.md)
 
 - Training workflows: [training/README.md](https://github.com/ShahriyariLab/CellExLink/blob/main/training/README.md)
 
@@ -57,6 +57,12 @@ Benchmark test datasets are provided in the repository under `benchmarks/data/`.
 
 Use of these datasets is subject to the license and terms specified by the original source. Please refer to the Zenodo record [link](https://zenodo.org/records/18090009) for citation and licensing information.
 
+## Citation
+
+If you use CellExLink in a manuscript, please include a formal software citation in your reference list for the exact released version you used, for example `CellExLink v0.1.0`. This software citation is separate from citing any companion article about the method.
+
+The repository includes a standard [CITATION.cff](CITATION.cff) file that GitHub and citation managers can use to generate a versioned software reference.
+
 
 ## Getting in touch
-Do not hesitate to [open an issue](https://github.com/ShahriyariLab/CellExLink.git) to get in touch with us with requests or questions. Any community contributions are encouraged! 
+Do not hesitate to [open an issue](https://github.com/ShahriyariLab/CellExLink/issues) to get in touch with us with requests or questions. Any community contributions are encouraged! 

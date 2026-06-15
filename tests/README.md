@@ -20,13 +20,13 @@ Current coverage includes:
 Run the full test suite from the repository root with:
 
 ```bash
-pytest
+pytest -q
 ```
 
 Run a smaller subset during development with commands such as:
 
 ```bash
-pytest tests/test_import.py
+pytest tests/test_public_api_shape.py -q
 pytest tests/test_bioc_io.py
 ```
 
