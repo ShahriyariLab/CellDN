@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="utf-8"?>
+<collection><infon key="CellExLink_normalization_model">CellExLink-Sapbert</infon><infon key="CellExLink_normalization_unique_mentions">41</infon><source>CellExLink</source><date>20260731</date><key>merged BioC collection</key>
+<document>
+    <id>31261512</id>
+    <passage>
+      <infon key="type">title</infon>
+      <offset>0</offset>
+      <text>A cross-sectional study of the ambulatory central artery stiffness index in patients with hypertension.</text>
+    </passage>
+    <passage>
+      <infon key="type">abstract</infon>
+      <offset>104</offset>
+      <text>The present study aimed to investigate the characteristics of the ambulatory central artery stiffness index (AcASI) and its related factors. The association between AcASI and the left ventricular mass index (LVMI), and other factors related to atherosclerosis were explored.Patients with primary hypertension were enrolled into this study. Ambulatory central artery blood pressure (CABP) and ambulatory brachial artery blood pressure (BABP) were assessed using a Mobil-O-Graph NG hemomanometer, whereas AcASI and the ambulatory arterial stiffness index (AASI) were determined. LVMI was assessed by echocardiography.A total of 136 patients with primary hypertension were enrolled from May 2011 to January 2013 in Beijing Hospital. AcASI was significantly associated with AASI (r = 0.879, P &lt; .001). AcASI was significantly lower than AASI (0.422 ± 0.302 vs 0.482 ± 0.270; P &lt; .001). AcASI increased with age, ambulatory brachial mean blood pressure (MBP), and fasting glucose. AcASI was significantly associated with office pulse pressure (PP), ambulatory brachial PP, ambulatory central PP, and pulse wave velocity (PWV). AcASI, but not AASI, was significantly associated with LVMI. Receiver operator characteristic analysis indicated that AcASI and AASI could may be a predictor of left ventricular hypertrophy (LVH). Multiple regression analysis indicated that AcASI, chronic kidney disease, and hypertension course were associated with LVMI, but AASI was not.AcASI, which is obtained from ambulatory CABP monitoring, could be a new marker for the evaluation of atherosclerosis. AcASI may be stronger associated with LVH than AASI.</text>
+    </passage>
+  </document>
+<document>
+    <id>29466753</id>
+    <passage>
+      <infon key="type">title</infon>
+      <offset>0</offset>
+      <text>Human T Cell Development, Localization, and Function throughout Life.</text>
+      <annotation id="T1">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000084</infon>
+        <infon key="label">T cell</infon>
+        <location offset="6" length="6" />
+        <text>T Cell</text>
+      </annotation>
+    </passage>
+    <passage>
+      <infon key="type">abstract</infon>
+      <offset>70</offset>
+      <text>Throughout life, T cells coordinate multiple aspects of adaptive immunity, including responses to pathogens, allergens, and tumors. In mouse models, the role of T cells is studied in the context of a specific type of pathogen, antigen, or disease condition over a limited time frame, whereas in humans, T cells control multiple insults simultaneously throughout the body and maintain immune homeostasis over decades. In this review, we discuss how human T cells develop and provide essential immune protection at different life stages and highlight tissue localization and subset delineation as key determinants of the T cell functional role in immune responses. We also discuss how anatomic compartments undergo distinct age-associated changes in T cell subset composition and function over a lifetime. It is important to consider age and tissue influences on human T cells when developing targeted strategies to modulate T cell-mediated immunity in vaccines and immunotherapies.</text>
+      <annotation id="T2">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000084</infon>
+        <infon key="label">T cell</infon>
+        <location offset="87" length="7" />
+        <text>T cells</text>
+      </annotation>
+      <annotation id="T3">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000084</infon>
+        <infon key="label">T cell</infon>
+        <location offset="231" length="7" />
+        <text>T cells</text>
+      </annotation>
+      <annotation id="T4">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000084</infon>
+        <infon key="label">T cell</infon>
+        <location offset="373" length="7" />
+        <text>T cells</text>
+      </annotation>
+      <annotation id="T5">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000084</infon>
+        <infon key="label">T cell</infon>
+        <location offset="524" length="7" />
+        <text>T cells</text>
+      </annotation>
+      <annotation id="T6">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000084</infon>
+        <infon key="label">T cell</infon>
+        <location offset="689" length="6" />
+        <text>T cell</text>
+      </annotation>
+      <annotation id="T7">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000084</infon>
+        <infon key="label">T cell</infon>
+        <location offset="818" length="6" />
+        <text>T cell</text>
+      </annotation>
+      <annotation id="T8">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000084</infon>
+        <infon key="label">T cell</infon>
+        <location offset="937" length="7" />
+        <text>T cells</text>
+      </annotation>
+      <annotation id="T9">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000084</infon>
+        <infon key="label">T cell</infon>
+        <location offset="993" length="6" />
+        <text>T cell</text>
+      </annotation>
+    </passage>
+  </document>
+<document>
+    <id>35287314</id>
+    <passage>
+      <infon key="type">title</infon>
+      <offset>0</offset>
+      <text>Macrophages: shapes and functions.</text>
+      <annotation id="T10">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000235</infon>
+        <infon key="label">macrophage</infon>
+        <location offset="0" length="11" />
+        <text>Macrophages</text>
+      </annotation>
+    </passage>
+    <passage>
+      <infon key="type">abstract</infon>
+      <offset>35</offset>
+      <text>Macrophages are cells of the innate immune system and represent an important component of the first-line defense against pathogens and tumor cells. Here, their diverse functions in inflammation and tumor defense are described, and the mechanisms, tools, and activation pathways and states applied are presented. The main focus is on the role and origin of reactive oxygen species (ROS), the important signal pathways TLR/NF-κB, and the M1/​​M2 polarization of macrophages. Graphical abstract: </text>
+      <annotation id="T11">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000235</infon>
+        <infon key="label">macrophage</infon>
+        <location offset="35" length="11" />
+        <text>Macrophages</text>
+      </annotation>
+      <annotation id="T12">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0001063</infon>
+        <infon key="label">neoplastic cell</infon>
+        <location offset="170" length="11" />
+        <text>tumor cells</text>
+      </annotation>
+      <annotation id="T13">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000235</infon>
+        <infon key="label">macrophage</infon>
+        <location offset="495" length="11" />
+        <text>macrophages</text>
+      </annotation>
+    </passage>
+  </document>
+<document>
+    <id>29515456</id>
+    <passage>
+      <infon key="type">title</infon>
+      <offset>0</offset>
+      <text>Neutrophil: A Cell with Many Roles in Inflammation or Several Cell Types?</text>
+      <annotation id="T14">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000775</infon>
+        <infon key="label">neutrophil</infon>
+        <location offset="0" length="10" />
+        <text>Neutrophil</text>
+      </annotation>
+    </passage>
+    <passage>
+      <infon key="type">abstract</infon>
+      <offset>74</offset>
+      <text>Neutrophils are the most abundant leukocytes in the circulation, and have been regarded as first line of defense in the innate arm of the immune system. They capture and destroy invading microorganisms, through phagocytosis and intracellular degradation, release of granules, and formation of neutrophil extracellular traps after detecting pathogens. Neutrophils also participate as mediators of inflammation. The classical view for these leukocytes is that neutrophils constitute a homogenous population of terminally differentiated cells with a unique function. However, evidence accumulated in recent years, has revealed that neutrophils present a large phenotypic heterogeneity and functional versatility, which place neutrophils as important modulators of both inflammation and immune responses. Indeed, the roles played by neutrophils in homeostatic conditions as well as in pathological inflammation and immune processes are the focus of a renovated interest in neutrophil biology. In this review, I present the concept of neutrophil phenotypic and functional heterogeneity and describe several neutrophil subpopulations reported to date. I also discuss the role these subpopulations seem to play in homeostasis and disease.</text>
+      <annotation id="T15">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000775</infon>
+        <infon key="label">neutrophil</infon>
+        <location offset="74" length="11" />
+        <text>Neutrophils</text>
+      </annotation>
+      <annotation id="T16">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000738</infon>
+        <infon key="label">leukocyte</infon>
+        <location offset="108" length="10" />
+        <text>leukocytes</text>
+      </annotation>
+      <annotation id="T17">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000775</infon>
+        <infon key="label">neutrophil</infon>
+        <location offset="367" length="10" />
+        <text>neutrophil</text>
+      </annotation>
+      <annotation id="T18">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000775</infon>
+        <infon key="label">neutrophil</infon>
+        <location offset="425" length="11" />
+        <text>Neutrophils</text>
+      </annotation>
+      <annotation id="T19">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000738</infon>
+        <infon key="label">leukocyte</infon>
+        <location offset="513" length="10" />
+        <text>leukocytes</text>
+      </annotation>
+      <annotation id="T20">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000775</infon>
+        <infon key="label">neutrophil</infon>
+        <location offset="532" length="11" />
+        <text>neutrophils</text>
+      </annotation>
+      <annotation id="T21">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000353</infon>
+        <infon key="label">blastoderm cell</infon>
+        <location offset="582" length="31" />
+        <text>terminally differentiated cells</text>
+      </annotation>
+      <annotation id="T22">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000775</infon>
+        <infon key="label">neutrophil</infon>
+        <location offset="703" length="11" />
+        <text>neutrophils</text>
+      </annotation>
+      <annotation id="T23">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000775</infon>
+        <infon key="label">neutrophil</infon>
+        <location offset="796" length="11" />
+        <text>neutrophils</text>
+      </annotation>
+      <annotation id="T24">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000775</infon>
+        <infon key="label">neutrophil</infon>
+        <location offset="903" length="11" />
+        <text>neutrophils</text>
+      </annotation>
+      <annotation id="T25">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000775</infon>
+        <infon key="label">neutrophil</infon>
+        <location offset="1043" length="10" />
+        <text>neutrophil</text>
+      </annotation>
+      <annotation id="T26">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000775</infon>
+        <infon key="label">neutrophil</infon>
+        <location offset="1104" length="10" />
+        <text>neutrophil</text>
+      </annotation>
+      <annotation id="T27">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000775</infon>
+        <infon key="label">neutrophil</infon>
+        <location offset="1176" length="10" />
+        <text>neutrophil</text>
+      </annotation>
+    </passage>
+  </document>
+<document>
+    <id>34360810</id>
+    <passage>
+      <infon key="type">title</infon>
+      <offset>0</offset>
+      <text>Review of Dendritic Cells, Their Role in Clinical Immunology, and Distribution in Various Animal Species.</text>
+      <annotation id="T28">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000451</infon>
+        <infon key="label">dendritic cell</infon>
+        <location offset="10" length="15" />
+        <text>Dendritic Cells</text>
+      </annotation>
+    </passage>
+    <passage>
+      <infon key="type">abstract</infon>
+      <offset>106</offset>
+      <text>Dendritic cells (DCs) are cells derived from the hematopoietic stem cells (HSCs) of the bone marrow and form a widely distributed cellular system throughout the body. They are the most efficient, potent, and professional antigen-presenting cells (APCs) of the immune system, inducing and dispersing a primary immune response by the activation of naïve T-cells, and playing an important role in the induction and maintenance of immune tolerance under homeostatic conditions. Thus, this review has elucidated the general aspects of DCs as well as the current dynamic perspectives and distribution of DCs in humans and in various species of animals that includes mouse, rat, birds, dog, cat, horse, cattle, sheep, pig, and non-human primates. Besides the role that DCs play in immune response, they also play a pathogenic role in many diseases, thus becoming a target in disease prevention and treatment. In addition, its roles in clinical immunology have also been addressed, which include its involvement in transplantation, autoimmune disease, viral infections, cancer, and as a vaccine target. Therefore, based on the current knowledge and understanding of the important roles they play, DCs can be used in the future as a powerful tool for manipulating the immune system.</text>
+      <annotation id="T29">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000451</infon>
+        <infon key="label">dendritic cell</infon>
+        <location offset="106" length="15" />
+        <text>Dendritic cells</text>
+      </annotation>
+      <annotation id="T30">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000451</infon>
+        <infon key="label">dendritic cell</infon>
+        <location offset="123" length="3" />
+        <text>DCs</text>
+      </annotation>
+      <annotation id="T31">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000037</infon>
+        <infon key="label">hematopoietic stem cell</infon>
+        <location offset="155" length="24" />
+        <text>hematopoietic stem cells</text>
+      </annotation>
+      <annotation id="T32">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000037</infon>
+        <infon key="label">hematopoietic stem cell</infon>
+        <location offset="181" length="4" />
+        <text>HSCs</text>
+      </annotation>
+      <annotation id="T33">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000145</infon>
+        <infon key="label">professional antigen presenting cell</infon>
+        <location offset="314" length="37" />
+        <text>professional antigen-presenting cells</text>
+      </annotation>
+      <annotation id="T34">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000145</infon>
+        <infon key="label">professional antigen presenting cell</infon>
+        <location offset="353" length="4" />
+        <text>APCs</text>
+      </annotation>
+      <annotation id="T35">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000898</infon>
+        <infon key="label">naive T cell</infon>
+        <location offset="452" length="13" />
+        <text>naïve T-cells</text>
+      </annotation>
+      <annotation id="T36">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000451</infon>
+        <infon key="label">dendritic cell</infon>
+        <location offset="636" length="3" />
+        <text>DCs</text>
+      </annotation>
+      <annotation id="T37">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000451</infon>
+        <infon key="label">dendritic cell</infon>
+        <location offset="704" length="3" />
+        <text>DCs</text>
+      </annotation>
+      <annotation id="T38">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000451</infon>
+        <infon key="label">dendritic cell</infon>
+        <location offset="868" length="3" />
+        <text>DCs</text>
+      </annotation>
+      <annotation id="T39">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000451</infon>
+        <infon key="label">dendritic cell</infon>
+        <location offset="1295" length="3" />
+        <text>DCs</text>
+      </annotation>
+    </passage>
+  </document>
+<document>
+    <id>36195172</id>
+    <passage>
+      <infon key="type">title</infon>
+      <offset>0</offset>
+      <text>Human natural killer cells: Form, function, and development.</text>
+      <annotation id="T40">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000623</infon>
+        <infon key="label">natural killer cell</infon>
+        <location offset="0" length="26" />
+        <text>Human natural killer cells</text>
+      </annotation>
+    </passage>
+    <passage>
+      <infon key="type">abstract</infon>
+      <offset>61</offset>
+      <text>Human natural killer (NK) cells are innate lymphoid cells that mediate important effector functions in the control of viral infection and malignancy. Their ability to distinguish "self" from "nonself" and lyse virally infected and tumorigenic cells through germline-encoded receptors makes them important players in maintaining human health and a powerful tool for immunotherapeutic applications and fighting disease. This review introduces our current understanding of NK cell biology, including key facets of NK cell differentiation and the acquisition and execution of NK cell effector function. Further, it addresses the clinical relevance of NK cells in both primary immunodeficiency and immunotherapy. It is intended to provide an up-to-date and comprehensive overview of this important and interesting innate immune effector cell subset.</text>
+      <annotation id="T41">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000623</infon>
+        <infon key="label">natural killer cell</infon>
+        <location offset="61" length="31" />
+        <text>Human natural killer (NK) cells</text>
+      </annotation>
+      <annotation id="T42">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0001065</infon>
+        <infon key="label">innate lymphoid cell</infon>
+        <location offset="97" length="21" />
+        <text>innate lymphoid cells</text>
+      </annotation>
+      <annotation id="T43">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000623</infon>
+        <infon key="label">natural killer cell</infon>
+        <location offset="531" length="7" />
+        <text>NK cell</text>
+      </annotation>
+      <annotation id="T44">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000623</infon>
+        <infon key="label">natural killer cell</infon>
+        <location offset="572" length="7" />
+        <text>NK cell</text>
+      </annotation>
+      <annotation id="T45">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000623</infon>
+        <infon key="label">natural killer cell</infon>
+        <location offset="633" length="7" />
+        <text>NK cell</text>
+      </annotation>
+      <annotation id="T46">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000623</infon>
+        <infon key="label">natural killer cell</infon>
+        <location offset="708" length="8" />
+        <text>NK cells</text>
+      </annotation>
+      <annotation id="T47">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0002127</infon>
+        <infon key="label">innate effector T cell</infon>
+        <location offset="870" length="27" />
+        <text>innate immune effector cell</text>
+      </annotation>
+    </passage>
+  </document>
+<document>
+    <id>34297930</id>
+    <passage>
+      <infon key="type">title</infon>
+      <offset>0</offset>
+      <text>Fibroblasts: Origins, definitions, and functions in health and disease.</text>
+      <annotation id="T48">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000057</infon>
+        <infon key="label">fibroblast</infon>
+        <location offset="0" length="11" />
+        <text>Fibroblasts</text>
+      </annotation>
+    </passage>
+    <passage>
+      <infon key="type">abstract</infon>
+      <offset>72</offset>
+      <text>Fibroblasts are diverse mesenchymal cells that participate in tissue homeostasis and disease by producing complex extracellular matrix and creating signaling niches through biophysical and biochemical cues. Transcriptionally and functionally heterogeneous across and within organs, fibroblasts encode regional positional information and maintain distinct cellular progeny. We summarize their development, lineages, functions, and contributions to fibrosis in four fibroblast-rich organs: skin, lung, skeletal muscle, and heart. We propose that fibroblasts are uniquely poised for tissue repair by easily reentering the cell cycle and exhibiting a reversible plasticity in phenotype and cell fate. These properties, when activated aberrantly, drive fibrotic disorders in humans.</text>
+      <annotation id="T49">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000057</infon>
+        <infon key="label">fibroblast</infon>
+        <location offset="72" length="11" />
+        <text>Fibroblasts</text>
+      </annotation>
+      <annotation id="T50">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0008019</infon>
+        <infon key="label">mesenchymal cell</infon>
+        <location offset="96" length="17" />
+        <text>mesenchymal cells</text>
+      </annotation>
+      <annotation id="T51">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000057</infon>
+        <infon key="label">fibroblast</infon>
+        <location offset="354" length="11" />
+        <text>fibroblasts</text>
+      </annotation>
+      <annotation id="T52">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000057</infon>
+        <infon key="label">fibroblast</infon>
+        <location offset="536" length="10" />
+        <text>fibroblast</text>
+      </annotation>
+      <annotation id="T53">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000057</infon>
+        <infon key="label">fibroblast</infon>
+        <location offset="616" length="11" />
+        <text>fibroblasts</text>
+      </annotation>
+    </passage>
+  </document>
+<document>
+    <id>31500313</id>
+    <passage>
+      <infon key="type">title</infon>
+      <offset>0</offset>
+      <text>Vascular Endothelial Cell Biology: An Update.</text>
+      <annotation id="T54">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0002139</infon>
+        <infon key="label">endothelial cell of vascular tree</infon>
+        <location offset="0" length="25" />
+        <text>Vascular Endothelial Cell</text>
+      </annotation>
+    </passage>
+    <passage>
+      <infon key="type">abstract</infon>
+      <offset>46</offset>
+      <text>The vascular endothelium, a monolayer of endothelial cells (EC), constitutes the inner cellular lining of arteries, veins and capillaries and therefore is in direct contact with the components and cells of blood. The endothelium is not only a mere barrier between blood and tissues but also an endocrine organ. It actively controls the degree of vascular relaxation and constriction, and the extravasation of solutes, fluid, macromolecules and hormones, as well as that of platelets and blood cells. Through control of vascular tone, EC regulate the regional blood flow. They also direct inflammatory cells to foreign materials, areas in need of repair or defense against infections. In addition, EC are important in controlling blood fluidity, platelet adhesion and aggregation, leukocyte activation, adhesion, and transmigration. They also tightly keep the balance between coagulation and fibrinolysis and play a major role in the regulation of immune responses, inflammation and angiogenesis. To fulfill these different tasks, EC are heterogeneous and perform distinctly in the various organs and along the vascular tree. Important morphological, physiological and phenotypic differences between EC in the different parts of the arterial tree as well as between arteries and veins optimally support their specified functions in these vascular areas. This review updates the current knowledge about the morphology and function of endothelial cells, particularly their differences in different localizations around the body paying attention specifically to their different responses to physical, biochemical and environmental stimuli considering the different origins of the EC.</text>
+      <annotation id="T55">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000115</infon>
+        <infon key="label">endothelial cell</infon>
+        <location offset="87" length="17" />
+        <text>endothelial cells</text>
+      </annotation>
+      <annotation id="T56">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000115</infon>
+        <infon key="label">endothelial cell</infon>
+        <location offset="106" length="2" />
+        <text>EC</text>
+      </annotation>
+      <annotation id="T57">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000233</infon>
+        <infon key="label">platelet</infon>
+        <location offset="519" length="9" />
+        <text>platelets</text>
+      </annotation>
+      <annotation id="T58">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000081</infon>
+        <infon key="label">blood cell</infon>
+        <location offset="533" length="11" />
+        <text>blood cells</text>
+      </annotation>
+      <annotation id="T59">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000115</infon>
+        <infon key="label">endothelial cell</infon>
+        <location offset="580" length="2" />
+        <text>EC</text>
+      </annotation>
+      <annotation id="T60">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0009002</infon>
+        <infon key="label">inflammatory cell</infon>
+        <location offset="634" length="18" />
+        <text>inflammatory cells</text>
+      </annotation>
+      <annotation id="T61">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000115</infon>
+        <infon key="label">endothelial cell</infon>
+        <location offset="743" length="2" />
+        <text>EC</text>
+      </annotation>
+      <annotation id="T62">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000233</infon>
+        <infon key="label">platelet</infon>
+        <location offset="791" length="8" />
+        <text>platelet</text>
+      </annotation>
+      <annotation id="T63">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000738</infon>
+        <infon key="label">leukocyte</infon>
+        <location offset="826" length="9" />
+        <text>leukocyte</text>
+      </annotation>
+      <annotation id="T64">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000115</infon>
+        <infon key="label">endothelial cell</infon>
+        <location offset="1076" length="2" />
+        <text>EC</text>
+      </annotation>
+      <annotation id="T65">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000115</infon>
+        <infon key="label">endothelial cell</infon>
+        <location offset="1245" length="2" />
+        <text>EC</text>
+      </annotation>
+      <annotation id="T66">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000115</infon>
+        <infon key="label">endothelial cell</infon>
+        <location offset="1478" length="17" />
+        <text>endothelial cells</text>
+      </annotation>
+      <annotation id="T67">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000115</infon>
+        <infon key="label">endothelial cell</infon>
+        <location offset="1722" length="2" />
+        <text>EC</text>
+      </annotation>
+    </passage>
+  </document>
+<document>
+    <id>26779180</id>
+    <passage>
+      <infon key="type">title</infon>
+      <offset>0</offset>
+      <text>Mast Cell: A Multi-Functional Master Cell.</text>
+      <annotation id="T68">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000097</infon>
+        <infon key="label">mast cell</infon>
+        <location offset="0" length="9" />
+        <text>Mast Cell</text>
+      </annotation>
+      <annotation id="T69">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000048</infon>
+        <infon key="label">multi fate stem cell</infon>
+        <location offset="30" length="11" />
+        <text>Master Cell</text>
+      </annotation>
+    </passage>
+    <passage>
+      <infon key="type">abstract</infon>
+      <offset>43</offset>
+      <text>Mast cells are immune cells of the myeloid lineage and are present in connective tissues throughout the body. The activation and degranulation of mast cells significantly modulates many aspects of physiological and pathological conditions in various settings. With respect to normal physiological functions, mast cells are known to regulate vasodilation, vascular homeostasis, innate and adaptive immune responses, angiogenesis, and venom detoxification. On the other hand, mast cells have also been implicated in the pathophysiology of many diseases, including allergy, asthma, anaphylaxis, gastrointestinal disorders, many types of malignancies, and cardiovascular diseases. This review summarizes the current understanding of the role of mast cells in many pathophysiological conditions. </text>
+      <annotation id="T70">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000097</infon>
+        <infon key="label">mast cell</infon>
+        <location offset="43" length="10" />
+        <text>Mast cells</text>
+      </annotation>
+      <annotation id="T71">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000738</infon>
+        <infon key="label">leukocyte</infon>
+        <location offset="58" length="12" />
+        <text>immune cells</text>
+      </annotation>
+      <annotation id="T72">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000097</infon>
+        <infon key="label">mast cell</infon>
+        <location offset="189" length="10" />
+        <text>mast cells</text>
+      </annotation>
+      <annotation id="T73">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000097</infon>
+        <infon key="label">mast cell</infon>
+        <location offset="351" length="10" />
+        <text>mast cells</text>
+      </annotation>
+      <annotation id="T74">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000097</infon>
+        <infon key="label">mast cell</infon>
+        <location offset="517" length="10" />
+        <text>mast cells</text>
+      </annotation>
+      <annotation id="T75">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000097</infon>
+        <infon key="label">mast cell</infon>
+        <location offset="784" length="10" />
+        <text>mast cells</text>
+      </annotation>
+    </passage>
+  </document>
+<document>
+    <id>31874430</id>
+    <passage>
+      <infon key="type">title</infon>
+      <offset>0</offset>
+      <text>Epithelial cells: liaisons of immunity.</text>
+      <annotation id="T76">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000066</infon>
+        <infon key="label">epithelial cell</infon>
+        <location offset="0" length="16" />
+        <text>Epithelial cells</text>
+      </annotation>
+    </passage>
+    <passage>
+      <infon key="type">abstract</infon>
+      <offset>40</offset>
+      <text>The surface and lining tissues of our body are exposed to the external environment, and as such these epithelial tissues must form structural barriers able to defend against microbes, environmental toxins, and mechanical stress. Their cells are equipped to detect a diverse array of surface perturbations, and then launch signaling relays to the immune system. The aim of these liaisons is to coordinate the requisite immune cell response needed to preserve and/or restore barrier integrity and defend the host. It has been recently appreciated that epithelial cells learn from these experiences. Following inflammatory exposure, long-lived stem cells within the tissue retain an epigenetic memory that endows them with heightened responsiveness to subsequent encounters with stress. Here, we review the recent literature on how epithelial cells sense signals from microbes, allergens, and injury at the tissue surface, and transmit this information to immune cells, while embedding a memory of the experience within their chromatin.</text>
+      <annotation id="T77">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000738</infon>
+        <infon key="label">leukocyte</infon>
+        <location offset="458" length="11" />
+        <text>immune cell</text>
+      </annotation>
+      <annotation id="T78">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000066</infon>
+        <infon key="label">epithelial cell</infon>
+        <location offset="590" length="16" />
+        <text>epithelial cells</text>
+      </annotation>
+      <annotation id="T79">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000034</infon>
+        <infon key="label">stem cell</infon>
+        <location offset="681" length="10" />
+        <text>stem cells</text>
+      </annotation>
+      <annotation id="T80">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000066</infon>
+        <infon key="label">epithelial cell</infon>
+        <location offset="869" length="16" />
+        <text>epithelial cells</text>
+      </annotation>
+      <annotation id="T81">
+        <infon key="type">cell_type</infon>
+        <infon key="identifier">CL:0000738</infon>
+        <infon key="label">leukocyte</infon>
+        <location offset="993" length="12" />
+        <text>immune cells</text>
+      </annotation>
+    </passage>
+  </document>
+</collection>
