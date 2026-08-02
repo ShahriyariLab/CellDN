@@ -7,9 +7,6 @@
 
 CellExLink is a Python package for recognizing cell-type mentions in biomedical text and linking them to Cell Ontology concepts.
 
-Full installation and usage instructions are available in the
-[CellExLink documentation](https://shahriyarilab.github.io/CellExLink/).
-
 ## Features
 
 - Cell-type mention recognition in biomedical text
@@ -24,6 +21,10 @@ Full installation and usage instructions are available in the
 - Visual inspection of predictions in notebook environments
 - Python and command-line interfaces
 - Documentation, executable examples, automated tests, and continuous integration
+
+## documentation
+Full installation and usage instructions are available in the
+[CellExLink documentation](https://shahriyarilab.github.io/CellExLink/).
 
 ## Requirement
 
