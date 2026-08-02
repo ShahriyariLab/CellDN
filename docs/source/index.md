@@ -1,6 +1,6 @@
-![License: GPL-3.0](https://img.shields.io/github/license/ShahriyariLab/CellExLink)
+[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue)](LICENSE)
 [![CI](https://github.com/ShahriyariLab/CellExLink/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ShahriyariLab/CellExLink/actions/workflows/ci.yml)
-![Language](https://img.shields.io/github/languages/top/ShahriyariLab/CellExLink)
+![Language: Python](https://img.shields.io/badge/Language-Python-blue)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ShahriyariLab/CellExLink/blob/main/examples/demo.ipynb)
 
 
