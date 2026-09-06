@@ -1,11 +1,11 @@
-# CellExLink: An open-source Python package for Cell Ontology-linked cell-type extraction
+# CellDN: An open-source Python package for cell detection and normalization
 
 [![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue)](LICENSE.txt)
 [![CI](https://github.com/ShahriyariLab/CellExLink/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/ShahriyariLab/CellExLink/actions/workflows/ci.yml)
 ![Language: Python](https://img.shields.io/badge/Language-Python-blue)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ShahriyariLab/CellExLink/blob/main/examples/demo.ipynb)
 
-CellExLink is a Python package for recognizing cell-type mentions in biomedical text and linking them to Cell Ontology concepts.
+CellDN is a Python package for recognizing cell-type mentions in biomedical text and linking them to Cell Ontology concepts.
 
 ## Features
 
@@ -28,7 +28,7 @@ Full installation and usage instructions are available in the
 
 ## Requirement
 
-The installation of `CellExLink` requires python version 3.10 and above.
+The installation of `CellDN` requires python version 3.10 and above.
 
 ## Installation
 ```bash
