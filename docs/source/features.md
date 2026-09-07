@@ -1,6 +1,6 @@
 # Features
 
-This page presents CellDN as a capability set rather than as a command reference. It is useful for documentation planning, onboarding, presentations, and choosing the right demo structure.
+This page presents CellDN as a capability set.
 
 ## Core workflows
 
