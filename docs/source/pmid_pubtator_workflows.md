@@ -1,4 +1,4 @@
-# PMID, PMCID, and PubTator3 workflows
+# PubTator3 workflows
 
 The examples below assume that a `CellDNPipeline` object named `pipe` has already been created.
 

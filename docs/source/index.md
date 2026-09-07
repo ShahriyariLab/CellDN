@@ -20,6 +20,7 @@ features
 workflows
 cli_workflows
 python_api_workflows
+pmid_pubtator_workflows
 input_output
 ```
 
@@ -39,6 +40,8 @@ input_output
 - {doc}`cli_workflows`
 
 - {doc}`python_api_workflows`
+
+- {doc}`pmid_pubtator_workflows`
 
 - {doc}`input_output`
 

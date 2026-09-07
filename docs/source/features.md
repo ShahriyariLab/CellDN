@@ -30,24 +30,18 @@ This page presents CellDN as a capability set.
 
 ## Demo matrix
 
-- CLI end-to-end on plain text
-  This shows the easiest user entry point. Input is plain text and output is JSON.
-- Python API end-to-end on plain text
-  This shows the same workflow programmatically and is good for notebook and pipeline users.
-- CLI NER-only on BioC XML
-  This shows structured corpus processing and is useful for users who only want mention detection.
-- CLI NEN-only on existing BioC annotations
-  This shows integration with external NER tools and is an important interoperability case.
-- CLI end-to-end on BioC XML or BioC JSON
-  This shows format flexibility and is useful for corpus-scale processing.
-- PMID input with abstract selection
-  This shows literature retrieval and prediction in one workflow.
-- PMID input with full-text selection
-  This shows the extended retrieval workflow beyond abstract-only mode.
-- PMID list from a `.txt` file
-  This shows practical batch processing for real use cases.
-- A directory processed with `run-files`
-  This shows bounded-memory corpus processing with automatic model reuse.
+- Cell-type mention recognition in biomedical text
+- Cell Ontology normalization for recognized or user-provided mention spans
+- End-to-end cell-type recognition and normalization
+- Support for plain text, BioC XML, BioC JSON, and compatible JSON documents
+- PMID and PMCID retrieval from NCBI or Europe PMC, using abstracts or available full text
+- Compatibility with PubTator3 BioC JSON, with preservation of existing annotations
+- Processing of individual files, directories, and multi-document collections
+- Configurable batching for identifier lists and local files, with passage-level chunking for structured documents
+- Automatic reuse of loaded models, ontology embeddings, and static abbreviation resources
+- Visual inspection of predictions in notebook environments
+- Python and command-line interfaces
+- Documentation, executable examples, automated tests, and continuous integration
 
 For full workflow examples, continue to:
 

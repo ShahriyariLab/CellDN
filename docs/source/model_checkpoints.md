@@ -13,13 +13,11 @@ CellDN uses two model checkpoints and a small set of packaged resources. The che
 
 > **Naming note:** The Hugging Face repository IDs retain the `CellExLink-*` names under which the checkpoints were published with the companion methodological study. These are external checkpoint identifiers; the installable package, Python namespace, and command-line interface are named CellDN, `celldn`, and `celldn`, respectively.
 
-The same model IDs can be used directly as Hugging Face model names or downloaded to local directories before running CellDN.
-
 ---
 
 ## Recommended download method
 
-Most users do not need to write any Python code to download the models. After installing CellDN, use the built-in command-line interface:
+After installing CellDN, use the built-in command-line interface:
 
 ```bash
 celldn download-models --output-dir models
