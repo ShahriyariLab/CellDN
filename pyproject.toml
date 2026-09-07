@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "celldn"
-version = "0.1.0"
+version = "1.0.0"
 description = "Cell-type recognition and Cell Ontology normalization from biomedical text"
 readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.10"

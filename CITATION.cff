@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use CellDN, please cite the exact software version you used."
 type: software
 title: "CellDN"
-version: "0.1.0"
+version: "1.0.0"
 repository-code: "https://github.com/ShahriyariLab/CellDN"
 url: "https://github.com/ShahriyariLab/CellDN"
 license: "GPL-3.0-only"

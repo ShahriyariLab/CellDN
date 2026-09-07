@@ -18,7 +18,7 @@ copyright = "2026, CellDN contributors"
 try:
     from celldn import __version__ as release
 except Exception:
-    release = "0.1.0"
+    release = "1.0.0"
 
 version = release
 
