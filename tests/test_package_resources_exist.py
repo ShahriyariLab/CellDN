@@ -1,4 +1,4 @@
-"""Lightweight checks for package data shipped with CellExLink.
+"""Lightweight checks for package data shipped with CellDN.
 
 These tests do not load Bioformer, SapBERT, Ab3P, or any model checkpoints.
 They only verify that the small packaged resources needed by the normalizer are
@@ -10,13 +10,13 @@ import csv
 import json
 from itertools import islice
 
-from cellexlink.normalization.abbreviations import (
+from celldn.normalization.abbreviations import (
     ABBREVIATION_HEADER,
     classify_abbreviation_path,
     default_abbreviations_path,
     load_abbreviation_identifier_lookup,
 )
-from cellexlink.normalization.ontology import (
+from celldn.normalization.ontology import (
     default_ontology_path,
     load_cell_ontology_terms,
 )

@@ -1,7 +1,7 @@
-"""BioC and JSON I/O utilities for CellExLink.
+"""BioC and JSON I/O utilities for CellDN.
 
 It can be used by tests, converters, fetchers, and CLI
-commands without loading the CellExLink NER/NEN checkpoints.
+commands without loading the CellDN NER/NEN checkpoints.
 
 BioC XML, BioC JSON, and generic JSON inputs are all parsed into the same
 in-memory BioC collection and passage-record objects. Downstream code can then
@@ -23,7 +23,7 @@ from typing import Any, Iterable, Iterator, Mapping, Sequence
 from xml.etree import ElementTree as ET
 
 PathLike = str | os.PathLike[str]
-_GENERATED_ANNOTATION_KEY = "__cellexlink_generated_annotation"
+_GENERATED_ANNOTATION_KEY = "__celldn_generated_annotation"
 
 BIOC_XML_FORMATS = {"xml", "bioc-xml", "bioc_xml"}
 BIOC_JSON_FORMATS = {"bioc-json", "bioc_json"}
@@ -32,7 +32,7 @@ SUPPORTED_DOCUMENT_FORMATS = BIOC_XML_FORMATS | BIOC_JSON_FORMATS | GENERIC_JSON
 
 
 # ---------------------------------------------------------------------------
-# Public lightweight prediction/record dataclasses retained from CellExLink 0.1
+# Public lightweight prediction/record dataclasses retained from CellDN 0.1
 # ---------------------------------------------------------------------------
 @dataclass(slots=True)
 class PredictedEntity:
@@ -179,7 +179,7 @@ class BioCDocument:
 
 @dataclass(slots=True)
 class BioCCollection:
-    source: str = "CellExLink"
+    source: str = "CellDN"
     date: str = ""
     key: str = "cell-type-extraction"
     infons: dict[str, str] = field(default_factory=dict)
@@ -347,7 +347,7 @@ def merge_bioc_files(
     """Merge BioC files while keeping only one input chunk in memory.
 
     Documents are written in input-file order. The first collection header is
-    preserved, stable CellExLink metadata is retained, normalization mention
+    preserved, stable CellDN metadata is retained, normalization mention
     counts are summed, and timing fields are omitted. Temporary generated
     annotation markers can be finalized while the documents are streamed.
     """
@@ -382,7 +382,7 @@ def merge_bioc_files(
             key_folded = key_text.casefold()
             if "elapsed" in key_folded or "runtime" in key_folded:
                 continue
-            if key_text == "CellExLink_normalization_unique_mentions":
+            if key_text == "CellDN_normalization_unique_mentions":
                 try:
                     unique_mentions += int(value)
                     saw_unique_mentions = True
@@ -392,7 +392,7 @@ def merge_bioc_files(
             header.infons.setdefault(key_text, str(value))
 
     if saw_unique_mentions:
-        header.infons["CellExLink_normalization_unique_mentions"] = str(
+        header.infons["CellDN_normalization_unique_mentions"] = str(
             unique_mentions
         )
 
@@ -933,7 +933,7 @@ def bioc_file_as_xml(input_path: PathLike, *, input_format: str = "auto") -> Ite
     if fmt == "bioc-xml":
         yield p
         return
-    with tempfile.TemporaryDirectory(prefix="cellexlink_input_bioc_") as tmp:
+    with tempfile.TemporaryDirectory(prefix="celldn_input_bioc_") as tmp:
         xml_path = Path(tmp) / "input.xml"
         convert_bioc_file(p, xml_path, input_format=fmt, output_format="bioc-xml")
         yield xml_path
@@ -953,7 +953,7 @@ def ensure_bioc_xml_file(
 def merge_bioc_collections(collections: Iterable[BioCCollection]) -> BioCCollection:
     """Merge several BioC collections into one without modifying predictions."""
 
-    merged = BioCCollection(source="CellExLink", date="", key="merged BioC collection")
+    merged = BioCCollection(source="CellDN", date="", key="merged BioC collection")
     for collection in collections:
         if not merged.source and collection.source:
             merged.source = collection.source
@@ -977,7 +977,7 @@ def merge_existing_annotations(
 ) -> Path:
     """Copy annotations from ``original_path`` into ``prediction_path`` when missing.
 
-    This is useful for BERN2-style outputs: CellExLink can add cell-type
+    This is useful for BERN2-style outputs: CellDN can add cell-type
     annotations while preserving gene/disease/chemical/species annotations that
     were present before prediction.
     """
@@ -1037,7 +1037,7 @@ def _merge_annotations_into_collection(
 
 
 # ---------------------------------------------------------------------------
-# Existing XML-oriented CellExLink helpers retained for compatibility
+# Existing XML-oriented CellDN helpers retained for compatibility
 # ---------------------------------------------------------------------------
 def _coerce_paths(paths: PathLike | Sequence[PathLike]) -> list[Path]:
     if isinstance(paths, (str, os.PathLike)):
@@ -1082,7 +1082,7 @@ def write_text_as_bioc_xml(
     *,
     document_id: str = "doc0",
     passage_offset: int = 0,
-    source: str = "CellExLink",
+    source: str = "CellDN",
     key: str = "cell-type-extraction",
     passage_type: str | None = None,
 ) -> Path:
@@ -1105,7 +1105,7 @@ def write_text_as_bioc_json(
     *,
     document_id: str = "doc0",
     passage_offset: int = 0,
-    source: str = "CellExLink",
+    source: str = "CellDN",
     key: str = "cell-type-extraction",
     passage_type: str | None = None,
 ) -> Path:

@@ -1,4 +1,4 @@
-"""Reusable named-entity recognition inference for CellExLink."""
+"""Reusable named-entity recognition inference for CellDN."""
 
 from __future__ import annotations
 
@@ -40,7 +40,7 @@ from .ner_common import (
 )
 
 check_min_version("4.37.0")
-require_version("datasets>=1.8.0", "Please install a compatible `datasets` version for CellExLink.")
+require_version("datasets>=1.8.0", "Please install a compatible `datasets` version for CellDN.")
 
 LOGGER = logging.getLogger(__name__)
 PathLike = str | Path
@@ -253,7 +253,7 @@ class NERPredictor:
                 verbose=self.verbose,
             )
             configure_logging(prediction_args, verbose=self.verbose)
-            show_status("Running CellExLink NER...", verbose=self.verbose)
+            show_status("Running CellDN NER...", verbose=self.verbose)
 
             raw_datasets = load_raw_datasets(
                 {"test": str(test_file)},
@@ -410,7 +410,7 @@ def predict_ner(
 def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
     """Parse command-line arguments for the standalone NER entry point."""
 
-    parser = argparse.ArgumentParser(description="Run CellExLink offset-based NER prediction.")
+    parser = argparse.ArgumentParser(description="Run CellDN offset-based NER prediction.")
     parser.add_argument(
         "--model-path",
         type=str,

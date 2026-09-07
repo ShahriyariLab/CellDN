@@ -1,14 +1,14 @@
-"""Minimal CellExLink Python API example."""
+"""Minimal CellDN Python API example."""
 
-from cellexlink import CellExLinkPipeline
-from cellexlink.pipeline import DEFAULT_NEN_MODEL, DEFAULT_NER_MODEL
+from celldn import CellDNPipeline
+from celldn.pipeline import DEFAULT_NEN_MODEL, DEFAULT_NER_MODEL
 
 TEXT = (
     "The stromal vascular fraction contained mesothelial cells, smooth muscle "
     "cells (SMCs), endothelial cells (ECs), and macrophages."
 )
 
-pipe = CellExLinkPipeline.from_pretrained(
+pipe = CellDNPipeline.from_pretrained(
     ner_model=DEFAULT_NER_MODEL,
     nen_model=DEFAULT_NEN_MODEL,
 )

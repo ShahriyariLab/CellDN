@@ -1,6 +1,6 @@
 # Installation
 
-This page describes how to install CellExLink for normal use.
+This page describes how to install CellDN for normal use.
 
 ---
 
@@ -11,7 +11,7 @@ Recommended environment:
 - Python >= 3.10
 - Linux, macOS, or Windows
 
-CellExLink uses task-focused biomedical encoder models for cell-type recognition and Cell Ontology normalization.
+CellDN uses task-focused biomedical encoder models for cell-type recognition and Cell Ontology normalization.
 
 Neural networks model checkpoints are not stored in the repository. After installing the package, see {doc}`model_checkpoints` for model download and path configuration.
 
@@ -30,8 +30,8 @@ python -m pip install --upgrade pip
 Using `conda`:
 
 ```bash
-conda create -n cellexlink python=3.12 -y
-conda activate cellexlink
+conda create -n celldn python=3.12 -y
+conda activate celldn
 python -m pip install --upgrade pip
 ```
 
@@ -42,7 +42,7 @@ python -m pip install --upgrade pip
 Install the published package from PyPI:
 
 ```bash
-python -m pip install cellexlink
+python -m pip install celldn
 ```
 
 ---
@@ -52,7 +52,7 @@ python -m pip install cellexlink
 Install it directly from GitHub:
 
 ```bash
-python -m pip install "git+https://github.com/ShahriyariLab/CellExLink.git"
+python -m pip install "git+https://github.com/ShahriyariLab/CellDN.git"
 ```
 
 ---
@@ -61,12 +61,12 @@ python -m pip install "git+https://github.com/ShahriyariLab/CellExLink.git"
 
 
 ```bash
-git clone https://github.com/ShahriyariLab/CellExLink.git
-cd CellExLink
+git clone https://github.com/ShahriyariLab/CellDN.git
+cd CellDN
 python -m pip install .
 ```
 
-These installation methods install the Python package from `src/cellexlink`
+These installation methods install the Python package from `src/celldn`
 and its packaged resource files. They do not install repository folders such
 as `docs/`, `examples/`, or `tests/`.
 
@@ -78,11 +78,11 @@ Check that the package imports correctly:
 
 ```bash
 python - <<'PY'
-import cellexlink
-from cellexlink import CellExLinkPipeline
+import celldn
+from celldn import CellDNPipeline
 
-print("CellExLink version:", cellexlink.__version__)
-print("Pipeline class:", CellExLinkPipeline.__name__)
+print("CellDN version:", celldn.__version__)
+print("Pipeline class:", CellDNPipeline.__name__)
 PY
 ```
 
@@ -94,36 +94,36 @@ This check does not require downloaded model checkpoints.
 
 The command-line interface is installed automatically with the Python package. No separate CLI package is needed.
 
-Check that the `cellexlink` command is available:
+Check that the `celldn` command is available:
 
 ```bash
-cellexlink --help
-cellexlink --version
+celldn --help
+celldn --version
 ```
 
 The main CLI commands are:
 
 ```text
-cellexlink download-models
-cellexlink predict-text
-cellexlink run-bioc
-cellexlink run-files
-cellexlink predict-pmid
+celldn download-models
+celldn predict-text
+celldn run-bioc
+celldn run-files
+celldn predict-pmid
 ```
 
 You can inspect each command without downloading models:
 
 ```bash
-cellexlink download-models --help
-cellexlink predict-text --help
-cellexlink run-bioc --help
-cellexlink run-files --help
+celldn download-models --help
+celldn predict-text --help
+celldn run-bioc --help
+celldn run-files --help
 ```
 
-If the command is not found, confirm that the environment where CellExLink was installed is activated, then try:
+If the command is not found, confirm that the environment where CellDN was installed is activated, then try:
 
 ```bash
-python -m cellexlink.cli --help
+python -m celldn.cli --help
 ```
 
 ---

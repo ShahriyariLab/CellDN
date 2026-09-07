@@ -1,6 +1,6 @@
 # CLI workflows
 
-This page collects CellExLink workflows from the command-line interface. If you want the cross-interface overview first, see {doc}`workflows`. If you want the Python version of the same ideas, see {doc}`python_api_workflows`.
+This page collects CellDN workflows from the command-line interface. If you want the cross-interface overview first, see {doc}`workflows`. If you want the Python version of the same ideas, see {doc}`python_api_workflows`.
 
 ## What the CLI covers
 
@@ -31,7 +31,7 @@ models/
 Create them with:
 
 ```bash
-cellexlink download-models --output-dir models
+celldn download-models --output-dir models
 ```
 
 Create an output directory:
@@ -47,7 +47,7 @@ mkdir -p outputs
 Use this to show mention detection without ontology normalization.
 
 ```bash
-cellexlink predict-text \
+celldn predict-text \
   --task ner \
   --text "CD8+ T cells infiltrated the tumor and macrophages accumulated nearby." \
   --output outputs/text_ner.json \
@@ -56,10 +56,10 @@ cellexlink predict-text \
 
 ### 2. Plain-text end-to-end
 
-Use this to show the shortest complete CellExLink workflow.
+Use this to show the shortest complete CellDN workflow.
 
 ```bash
-cellexlink predict-text \
+celldn predict-text \
   --text "CD8+ T cells infiltrated the tumor and macrophages accumulated nearby." \
   --output outputs/text_e2e.json \
   --ner-model models/CellExLink-bioformer16L \
@@ -71,7 +71,7 @@ cellexlink predict-text \
 Use this when the audience works with corpus-style biomedical documents.
 
 ```bash
-cellexlink run-bioc \
+celldn run-bioc \
   examples/sample_input.xml \
   outputs/sample.ner.xml \
   --task ner \
@@ -81,10 +81,10 @@ cellexlink run-bioc \
 
 ### 4. BioC XML normalization only
 
-Use this to show how CellExLink can normalize mentions produced by an upstream recognizer.
+Use this to show how CellDN can normalize mentions produced by an upstream recognizer.
 
 ```bash
-cellexlink run-bioc \
+celldn run-bioc \
   outputs/sample.ner.xml \
   outputs/sample.normalized.xml \
   --task nen \
@@ -97,7 +97,7 @@ cellexlink run-bioc \
 Use this to show the standard structured-document workflow.
 
 ```bash
-cellexlink run-bioc \
+celldn run-bioc \
   examples/sample_input.xml \
   outputs/sample.end_to_end.xml \
   --ner-output-xml outputs/sample.intermediate_ner.xml \
@@ -111,7 +111,7 @@ cellexlink run-bioc \
 Use `run-bioc` when the input is BioC JSON rather than BioC XML.
 
 ```bash
-cellexlink run-bioc \
+celldn run-bioc \
   inputs/sample_bioc.json \
   outputs/sample_bioc.normalized.json \
   --task end-to-end \
@@ -123,15 +123,15 @@ cellexlink run-bioc \
 
 ### 7. PubTator3 BioC JSON integration
 
-Use this when you want to start from PubTator3 annotations and add CellExLink cell-type predictions to the same BioC JSON document.
+Use this when you want to start from PubTator3 annotations and add CellDN cell-type predictions to the same BioC JSON document.
 
 ```bash
 curl -L "https://www.ncbi.nlm.nih.gov/research/pubtator3-api/publications/export/biocjson?pmids=30243656" \
   -o outputs/pubtator3_annotations.bioc.json
 
-cellexlink run-bioc \
+celldn run-bioc \
   outputs/pubtator3_annotations.bioc.json \
-  outputs/cellexlink_added.bioc.json \
+  outputs/celldn_added.bioc.json \
   --input-format bioc-json \
   --output-format bioc-json \
   --task end-to-end \
@@ -143,15 +143,15 @@ cellexlink run-bioc \
 Notes:
 
 - PubTator3 BioC JSON can be passed directly to `run-bioc`.
-- `--preserve-existing-annotations` keeps the original PubTator3 annotations while adding CellExLink cell-type results.
+- `--preserve-existing-annotations` keeps the original PubTator3 annotations while adding CellDN cell-type results.
 - With `pmids=...`, this PubTator3 export is typically title plus abstract content.
 
 ### 8. Generic JSON input from another tool
 
-Use this when integrating CellExLink with upstream tools that emit JSON rather than BioC.
+Use this when integrating CellDN with upstream tools that emit JSON rather than BioC.
 
 ```bash
-cellexlink run-bioc \
+celldn run-bioc \
   inputs/upstream_annotations.json \
   outputs/upstream_annotations.normalized.json \
   --task nen \
@@ -162,10 +162,10 @@ cellexlink run-bioc \
 
 ### 9. PMID abstract retrieval plus prediction
 
-Use this to show retrieval followed by CellExLink inference.
+Use this to show retrieval followed by CellDN inference.
 
 ```bash
-cellexlink predict-pmid \
+celldn predict-pmid \
   --pmid 31261512 \
   --text-source abstract \
   --output outputs/pmid_31261512.predicted.xml \
@@ -178,7 +178,7 @@ cellexlink predict-pmid \
 Use this to show full-text mode when a PMC OA or Europe PMC full text is available.
 
 ```bash
-cellexlink predict-pmid \
+celldn predict-pmid \
   --pmid PMC6821189 \
   --text-source fulltext \
   --output outputs/pmc6821189.fulltext.predicted.xml \
@@ -202,7 +202,7 @@ PMC6821189
 run:
 
 ```bash
-cellexlink predict-pmid \
+celldn predict-pmid \
   --ids-file pmids.txt \
   --text-source abstract \
   --output outputs/pmid_batch.predicted.xml \
@@ -219,7 +219,7 @@ the command, and its NER model, NEN model, and static ontology embeddings are
 reused across all chunks.
 
 ```bash
-cellexlink run-files corpus/ \
+celldn run-files corpus/ \
   --results-dir outputs/corpus_results/ \
   --chunk-size 32 \
   --bioc-chunk-size 128 \

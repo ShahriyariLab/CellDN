@@ -3,9 +3,9 @@
 ## Python
 
 ```python
-from cellexlink import CellExLinkPipeline
+from celldn import CellDNPipeline
 
-pipe = CellExLinkPipeline.from_pretrained(
+pipe = CellDNPipeline.from_pretrained(
     ner_model="almire/CellExLink-bioformer16L",
     nen_model="almire/CellExLink-Sapbert",
 )
@@ -65,26 +65,26 @@ Large identifier lists are chunked internally and merged into one output file.
 ## Command line
 
 ```bash
-cellexlink predict-text \
+celldn predict-text \
   --text "Macrophages accumulated near the tumor." \
   --output predictions.json
 ```
 
 ```bash
-cellexlink run-bioc input.xml output.xml \
+celldn run-bioc input.xml output.xml \
   --task end-to-end \
   --chunk-size 128
 ```
 
 ```bash
-cellexlink run-files input_directory/ \
+celldn run-files input_directory/ \
   --results-dir result_directory/ \
   --chunk-size 32 \
   --bioc-chunk-size 128
 ```
 
 ```bash
-cellexlink predict-pmid \
+celldn predict-pmid \
   --ids-file examples/PMID_list.txt \
   --output results.xml \
   --chunk-size 100 \

@@ -1,6 +1,6 @@
-"""Abbreviation handling for CellExLink normalization.
+"""Abbreviation handling for CellDN normalization.
 
-This keeps the original CellExLink strategy:
+This keeps the original CellDN strategy:
 1. Load a TSV dictionary with short_form and matched_cl_id.
 2. Directly assign unambiguous abbreviation keys.
 3. Treat keys with multiple CL IDs as ambiguous.
@@ -51,7 +51,7 @@ class AbbreviationLookup:
 
 
 def default_abbreviations_path() -> Path:
-    candidate = resources.files("cellexlink").joinpath(
+    candidate = resources.files("celldn").joinpath(
         "resources", DEFAULT_ABBREVIATIONS_FILENAME
     )
     return Path(str(candidate))

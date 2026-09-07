@@ -3,7 +3,7 @@ requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "cellexlink"
+name = "celldn"
 version = "0.1.0"
 description = "Cell-type recognition and Cell Ontology normalization from biomedical text"
 readme = { file = "README.md", content-type = "text/markdown" }
@@ -52,10 +52,12 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/ShahriyariLab/CellExLink"
+Homepage = "https://github.com/ShahriyariLab/CellDN"
+Documentation = "https://shahriyarilab.github.io/CellDN/"
+Issues = "https://github.com/ShahriyariLab/CellDN/issues"
 
 [project.scripts]
-cellexlink = "cellexlink.cli:main"
+celldn = "celldn.cli:main"
 
 [tool.setuptools]
 package-dir = { "" = "src" }
@@ -65,7 +67,7 @@ include-package-data = false
 where = ["src"]
 
 [tool.setuptools.package-data]
-cellexlink = [
+celldn = [
   "resources/*.tsv",
   "resources/*.jsonl"
 ]

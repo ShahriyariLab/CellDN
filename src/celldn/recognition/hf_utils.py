@@ -1,4 +1,4 @@
-"""Small Hugging Face helpers used by the CellExLink NER runtime.
+"""Small Hugging Face helpers used by the CellDN NER runtime.
 
 This module keeps model-loading details out of the main prediction flow. It
 handles path resolution, tokenizer/model loading, optional auth arguments, and
@@ -169,7 +169,7 @@ def load_fast_tokenizer(options: HFModelOptions, config) -> PreTrainedTokenizerF
 
     tokenizer = AutoTokenizer.from_pretrained(tokenizer_name_or_path, **tokenizer_kwargs)
     if not isinstance(tokenizer, PreTrainedTokenizerFast):
-        raise ValueError("CellExLink recognition requires a fast tokenizer for offset-based span alignment.")
+        raise ValueError("CellDN recognition requires a fast tokenizer for offset-based span alignment.")
     return tokenizer
 
 

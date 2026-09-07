@@ -1,6 +1,6 @@
 # Input and output formats
 
-This page describes the formats that the current CellExLink CLI and Python API actually read and write. The main public formats are:
+This page describes the formats that the current CellDN CLI and Python API actually read and write. The main public formats are:
 
 - plain text input for end-to-end extraction
 - BioC XML input and output for corpus-style processing
@@ -9,21 +9,21 @@ This page describes the formats that the current CellExLink CLI and Python API a
 
 ## Plain-text input
 
-The `cellexlink predict-text` command accepts either a text string or a plain-text file:
+The `celldn predict-text` command accepts either a text string or a plain-text file:
 
 ```bash
-cellexlink predict-text \
+celldn predict-text \
   --text "The mesothelial cell and SMC clusters formed the third population." \
   --output outputs/text_predictions.json
 ```
 
 ```bash
-cellexlink predict-text \
+celldn predict-text \
   --input examples/sample_input.txt \
   --output outputs/text_predictions.json
 ```
 
-Internally, CellExLink converts the text to a one-document, one-passage BioC XML file and then runs the same end-to-end pipeline used for BioC input.
+Internally, CellDN converts the text to a one-document, one-passage BioC XML file and then runs the same end-to-end pipeline used for BioC input.
 
 ## JSON output from plain text
 
@@ -61,7 +61,7 @@ The BioC workflows expect an input collection with at least one document and one
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <collection>
-  <source>CellExLink examples</source>
+  <source>CellDN examples</source>
   <date></date>
   <key>cell-type-extraction</key>
   <document>
@@ -94,12 +94,12 @@ passage/infon[@key="type"]
 
 Use:
 
-- `cellexlink run-bioc --task end-to-end` for extraction plus normalization
-- `cellexlink run-bioc --task nen` when the BioC file already contains cell-type annotations
+- `celldn run-bioc --task end-to-end` for extraction plus normalization
+- `celldn run-bioc --task nen` when the BioC file already contains cell-type annotations
 
 ## BioC offsets
 
-CellExLink treats BioC annotation locations as absolute document offsets.
+CellDN treats BioC annotation locations as absolute document offsets.
 
 Example:
 
@@ -197,5 +197,5 @@ namespace
 Use the packaged ontology file or dowload from other resources.
 
 ```text
-src/cellexlink/resources/cell_ontology_v2025-12-17.jsonl
+src/celldn/resources/cell_ontology_v2025-12-17.jsonl
 ```

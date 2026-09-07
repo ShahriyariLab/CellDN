@@ -158,7 +158,7 @@ def parse_args() -> argparse.Namespace:
     """Parse command-line arguments for the BioC-to-JSON converter."""
 
     parser = argparse.ArgumentParser(
-        description="Convert BioC XML into JSON passage records for CellExLink NER prediction."
+        description="Convert BioC XML into JSON passage records for CellDN NER prediction."
     )
     parser.add_argument("inputs", nargs="+", help="Input BioC XML files or directories.")
     parser.add_argument("--output", required=True, help="Destination JSON file.")

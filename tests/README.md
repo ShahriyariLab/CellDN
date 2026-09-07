@@ -1,6 +1,6 @@
 # Testing
 
-This folder contains developer-facing tests for validating CellExLink package behavior.
+This folder contains developer-facing tests for validating CellDN package behavior.
 
 ## Install test dependencies
 

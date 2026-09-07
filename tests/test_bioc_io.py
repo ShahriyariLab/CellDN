@@ -7,7 +7,7 @@ from xml.etree import ElementTree as ET
 
 
 def test_write_text_as_bioc_and_iterate_records(tmp_path: Path) -> None:
-    from cellexlink.io import (
+    from celldn.io import (
         collection_summary,
         iter_bioc_passage_records,
         write_text_as_bioc_xml,
@@ -36,7 +36,7 @@ def test_write_text_as_bioc_and_iterate_records(tmp_path: Path) -> None:
 
 
 def test_write_predictions_to_bioc_and_read_annotations(tmp_path: Path) -> None:
-    from cellexlink.io import (
+    from celldn.io import (
         PredictedEntity,
         collection_summary,
         read_bioc_annotations,
@@ -89,7 +89,7 @@ def test_write_predictions_to_bioc_and_read_annotations(tmp_path: Path) -> None:
 
 
 def test_bioc_annotation_offsets_are_absolute(tmp_path: Path) -> None:
-    from cellexlink.io import PredictedEntity, read_bioc_annotations, write_predictions_to_bioc_xml
+    from celldn.io import PredictedEntity, read_bioc_annotations, write_predictions_to_bioc_xml
 
     xml_path = tmp_path / "offset_sample.xml"
     xml_path.write_text(

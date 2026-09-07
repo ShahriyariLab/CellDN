@@ -1,4 +1,4 @@
-"""Command line interface for CellExLink."""
+"""Command line interface for CellDN."""
 
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ from .pipeline import (
     DEFAULT_NEN_MODEL,
     DEFAULT_NER_MODEL,
     DEFAULT_PMID_CHUNK_SIZE,
-    CellExLinkPipeline,
+    CellDNPipeline,
     write_predictions_json,
 )
 from .retrieval import combine_ids
@@ -35,10 +35,10 @@ FILE_TASK_CHOICES = ["ner", "nen", "end-to-end", "e2e"]
 
 
 def build_parser() -> argparse.ArgumentParser:
-    """Build the top-level ``cellexlink`` command parser."""
+    """Build the top-level ``celldn`` command parser."""
 
     parser = argparse.ArgumentParser(
-        prog="cellexlink",
+        prog="celldn",
         description="Cell-type recognition and Cell Ontology normalization for text, BioC, JSON, and PMID inputs.",
     )
     parser.add_argument("--version", action="store_true", help="Print package version and exit.")
@@ -52,7 +52,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_download.add_argument("--trust-remote-code", action="store_true")
     p_download.set_defaults(func=_cmd_download_models)
 
-    p_text = subparsers.add_parser("predict-text", help="Run CellExLink on plain text and write JSON.")
+    p_text = subparsers.add_parser("predict-text", help="Run CellDN on plain text and write JSON.")
     _add_model_args(p_text)
     text_group = p_text.add_mutually_exclusive_group(required=True)
     text_group.add_argument("--text", help="Text string to process.")
@@ -177,7 +177,7 @@ def _add_model_args(
     if include_output_dir:
         parser.add_argument(
             "--output-dir",
-            default="cellexlink_outputs",
+            default="celldn_outputs",
             help="Working directory for intermediate prediction artifacts.",
         )
     parser.add_argument(
@@ -228,16 +228,16 @@ def _add_id_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--ids-file", help="Text file containing PMIDs/PMCIDs.")
 
 
-def _pipeline_from_args(args: argparse.Namespace) -> CellExLinkPipeline:
+def _pipeline_from_args(args: argparse.Namespace) -> CellDNPipeline:
     """Create a pipeline instance from parsed CLI arguments."""
 
-    return CellExLinkPipeline.from_pretrained(
+    return CellDNPipeline.from_pretrained(
         ner_model=args.ner_model,
         nen_model=args.nen_model,
         ontology_path=args.ontology_path,
         abbreviations_path=args.abbreviations_path,
         disable_abbreviations=args.disable_abbreviations,
-        output_dir=getattr(args, "output_dir", "cellexlink_outputs"),
+        output_dir=getattr(args, "output_dir", "celldn_outputs"),
         warmup_runs=args.warmup_runs,
         batch_size=args.batch_size,
         fp16=args.fp16,
@@ -337,7 +337,7 @@ def _cmd_run_bioc(args: argparse.Namespace) -> int:
         preserve_existing_annotations=args.preserve_existing_annotations,
         ner_output_xml=args.ner_output_xml,
         overwrite=args.overwrite,
-        chunk_size=args.chunk_size,
+        passage_chunk_size=args.chunk_size,
     )
     print(str(output))
     return 0
@@ -351,8 +351,8 @@ def _cmd_run_files(args: argparse.Namespace) -> int:
         args.inputs,
         args.results_dir,
         task=args.task,
-        chunk_size=args.chunk_size,
-        bioc_chunk_size=args.bioc_chunk_size,
+        batch_size=args.chunk_size,
+        passage_chunk_size=args.bioc_chunk_size,
         input_format=args.input_format,
         output_format=args.output_format,
         preserve_existing_annotations=args.preserve_existing_annotations,
@@ -381,8 +381,8 @@ def _cmd_predict_pmid(args: argparse.Namespace) -> int:
         strict_fetch=args.strict_fetch,
         timeout=args.timeout,
         pause=args.pause,
-        chunk_size=args.chunk_size,
-        bioc_chunk_size=args.bioc_chunk_size,
+        batch_size=args.chunk_size,
+        passage_chunk_size=args.bioc_chunk_size,
     )
     print(str(output))
     return 0
@@ -404,15 +404,15 @@ def _cmd_convert_bioc(args: argparse.Namespace) -> int:
 
 
 def main(argv: Iterable[str] | None = None) -> int:
-    """Run the ``cellexlink`` CLI entry point."""
+    """Run the ``celldn`` CLI entry point."""
 
     parser = build_parser()
     args = parser.parse_args(list(argv) if argv is not None else None)
     if args.version:
         try:
-            print(version("cellexlink"))
+            print(version("celldn"))
         except Exception:  # noqa: BLE001
-            print("cellexlink")
+            print("celldn")
         return 0
     if not hasattr(args, "func"):
         parser.print_help()

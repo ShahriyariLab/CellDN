@@ -4,7 +4,7 @@ include CITATION.cff
 include pyproject.toml
 include MANIFEST.in
 
-recursive-include src/cellexlink/resources *.tsv *.jsonl
+recursive-include src/celldn/resources *.tsv *.jsonl
 
 prune models
 prune data

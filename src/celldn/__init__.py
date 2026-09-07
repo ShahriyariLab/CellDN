@@ -1,4 +1,11 @@
-"""CellExLink public API."""
+"""CellDN public API."""
+
+from importlib.metadata import PackageNotFoundError, version
+
+try:
+    __version__ = version("celldn")
+except PackageNotFoundError:  # pragma: no cover - source-tree fallback.
+    __version__ = "0.1.0"
 
 from .pipeline import (
     DEFAULT_BIOC_CHUNK_SIZE,
@@ -6,7 +13,7 @@ from .pipeline import (
     DEFAULT_NEN_MODEL,
     DEFAULT_NER_MODEL,
     DEFAULT_PMID_CHUNK_SIZE,
-    CellExLinkPipeline,
+    CellDNPipeline,
     ExtractionResult,
     RecognizedMention,
     write_predictions_json,
@@ -18,10 +25,11 @@ __all__ = [
     "DEFAULT_NEN_MODEL",
     "DEFAULT_NER_MODEL",
     "DEFAULT_PMID_CHUNK_SIZE",
-    "CellExLinkPipeline",
+    "CellDNPipeline",
     "ExtractionResult",
     "RecognizedMention",
     "write_predictions_json",
+    "__version__",
 ]
 
 try:

@@ -1,4 +1,4 @@
-"""Tests for the top-level CellExLink command-line interface."""
+"""Tests for the top-level CellDN command-line interface."""
 
 from __future__ import annotations
 
@@ -10,13 +10,14 @@ import pytest
 
 
 def test_cli_help_lists_main_commands(capsys: pytest.CaptureFixture[str]) -> None:
-    from cellexlink.cli import main
+    from celldn.cli import main
 
     with pytest.raises(SystemExit) as exc_info:
         main(["--help"])
 
     assert exc_info.value.code == 0
     captured = capsys.readouterr()
+    assert "usage: celldn" in captured.out
     assert "predict-text" in captured.out
     assert "run-bioc" in captured.out
     assert "download-models" in captured.out
@@ -24,7 +25,7 @@ def test_cli_help_lists_main_commands(capsys: pytest.CaptureFixture[str]) -> Non
 
 
 def test_predict_text_parser_accepts_text_input(tmp_path: Path) -> None:
-    from cellexlink.cli import build_parser
+    from celldn.cli import build_parser
 
     output = tmp_path / "predictions.json"
     parser = build_parser()
@@ -45,7 +46,7 @@ def test_predict_text_parser_accepts_text_input(tmp_path: Path) -> None:
 
 
 def test_run_bioc_parser_accepts_paths(tmp_path: Path) -> None:
-    from cellexlink.cli import build_parser
+    from celldn.cli import build_parser
 
     input_xml = tmp_path / "input.xml"
     output_xml = tmp_path / "normalized.xml"
@@ -77,7 +78,7 @@ def test_predict_text_cli_dispatch_can_be_tested_without_models(
     monkeypatch: pytest.MonkeyPatch,
     capsys: pytest.CaptureFixture[str],
 ) -> None:
-    import cellexlink.cli as cli
+    import celldn.cli as cli
 
     output = tmp_path / "predictions.json"
 
@@ -140,7 +141,7 @@ def test_download_models_uses_checkpoint_names_and_writes_manifest(
     monkeypatch: pytest.MonkeyPatch,
     capsys: pytest.CaptureFixture[str],
 ) -> None:
-    import cellexlink.cli as cli
+    import celldn.cli as cli
 
     def fake_snapshot_download(repo_id: str, *, local_dir: Path | str):
         path = Path(local_dir)
@@ -160,3 +161,113 @@ def test_download_models_uses_checkpoint_names_and_writes_manifest(
     assert manifest["ner_model"].endswith("CellExLink-bioformer16L")
     assert manifest["nen_model"].endswith("CellExLink-Sapbert")
     assert str(output_dir / "CellExLink-bioformer16L") in capsys.readouterr().out
+
+
+def test_run_bioc_cli_maps_chunk_flag_to_public_api(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import celldn.cli as cli
+
+    captured: dict[str, object] = {}
+    output = tmp_path / "output.xml"
+
+    class FakePipeline:
+        def run_bioc(self, input_path, output_path, **kwargs):
+            captured["input_path"] = input_path
+            captured["output_path"] = output_path
+            captured.update(kwargs)
+            return Path(output_path)
+
+    monkeypatch.setattr(cli, "_pipeline_from_args", lambda args: FakePipeline())
+
+    exit_code = cli.main(
+        [
+            "run-bioc",
+            str(tmp_path / "input.xml"),
+            str(output),
+            "--chunk-size",
+            "17",
+        ]
+    )
+
+    assert exit_code == 0
+    assert captured["passage_chunk_size"] == 17
+    assert "chunk_size" not in captured
+
+
+def test_run_files_cli_maps_chunk_flags_to_public_api(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import celldn.cli as cli
+
+    captured: dict[str, object] = {}
+    result = tmp_path / "results" / "input.json"
+
+    class FakePipeline:
+        def run_files(self, input_paths, output_dir, **kwargs):
+            captured["input_paths"] = input_paths
+            captured["output_dir"] = output_dir
+            captured.update(kwargs)
+            return [result]
+
+    monkeypatch.setattr(cli, "_pipeline_from_args", lambda args: FakePipeline())
+
+    exit_code = cli.main(
+        [
+            "run-files",
+            str(tmp_path / "input.txt"),
+            "--results-dir",
+            str(tmp_path / "results"),
+            "--chunk-size",
+            "7",
+            "--bioc-chunk-size",
+            "11",
+        ]
+    )
+
+    assert exit_code == 0
+    assert captured["batch_size"] == 7
+    assert captured["passage_chunk_size"] == 11
+    assert "chunk_size" not in captured
+    assert "bioc_chunk_size" not in captured
+
+
+def test_predict_pmid_cli_maps_chunk_flags_to_public_api(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import celldn.cli as cli
+
+    captured: dict[str, object] = {}
+    output = tmp_path / "pmids.xml"
+
+    class FakePipeline:
+        def run_pmids(self, ids, output_path, **kwargs):
+            captured["ids"] = ids
+            captured["output_path"] = output_path
+            captured.update(kwargs)
+            return Path(output_path)
+
+    monkeypatch.setattr(cli, "_pipeline_from_args", lambda args: FakePipeline())
+
+    exit_code = cli.main(
+        [
+            "predict-pmid",
+            "30243656",
+            "--output",
+            str(output),
+            "--chunk-size",
+            "13",
+            "--bioc-chunk-size",
+            "19",
+        ]
+    )
+
+    assert exit_code == 0
+    assert captured["ids"] == ["30243656"]
+    assert captured["batch_size"] == 13
+    assert captured["passage_chunk_size"] == 19
+    assert "chunk_size" not in captured
+    assert "bioc_chunk_size" not in captured

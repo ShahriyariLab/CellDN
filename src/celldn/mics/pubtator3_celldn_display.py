@@ -1,14 +1,14 @@
-"""Render PubTator3 and CellExLink BioC JSON annotations.
+"""Render PubTator3 and CellDN BioC JSON annotations.
 
 This module provides small notebook-friendly helpers for loading a BioC JSON
 file and rendering its passages as highlighted HTML. It is designed for merged
-outputs where PubTator3 annotations are preserved and CellExLink cell-type
+outputs where PubTator3 annotations are preserved and CellDN cell-type
 annotations are added on top.
 
 Display behavior:
-    - CellExLink ``cell_type`` mentions are highlighted in lavender.
+    - CellDN ``cell_type`` mentions are highlighted in lavender.
     - Other PubTator3 entities are highlighted in pale yellow.
-    - When two annotations overlap, CellExLink annotations take priority.
+    - When two annotations overlap, CellDN annotations take priority.
 
 Expected input:
     A BioC JSON dictionary with a top-level ``documents`` list, where each
@@ -26,7 +26,7 @@ from IPython.display import HTML
 # =========================
 # Colors
 # =========================
-CELLEXLINK_COLOR = "#ddd6fe"   # CellExLink cell_type annotations
+CELLDN_COLOR = "#ddd6fe"   # CellDN cell_type annotations
 PUBTATOR3_COLOR = "#fef3c7"    # PubTator3 annotations: Gene, Disease, Species, etc.
 
 
@@ -48,7 +48,7 @@ def get_ann_type(annotation):
 
 
 def is_cell_type(annotation):
-    """Return True when the annotation is a CellExLink cell-type mention."""
+    """Return True when the annotation is a CellDN cell-type mention."""
 
     ann_type = get_ann_type(annotation).lower()
     ann_type = ann_type.replace("-", "_").replace(" ", "_")
@@ -136,8 +136,8 @@ def collect_passage_annotations(passage):
         ann_type = get_ann_type(annotation)
 
         if is_cell_type(annotation):
-            source = "CellExLink"
-            color = CELLEXLINK_COLOR
+            source = "CellDN"
+            color = CELLDN_COLOR
             priority = 2
         else:
             source = "PubTator3"
@@ -162,14 +162,14 @@ def collect_passage_annotations(passage):
 def remove_overlaps(annotations):
     """
     Keeps non-overlapping annotations.
-    If CellExLink and PubTator3 overlap, CellExLink wins.
+    If CellDN and PubTator3 overlap, CellDN wins.
 
     Example:
       PubTator3:   B lymphoma
-      CellExLink:  B lymphoma cells
+      CellDN:  B lymphoma cells
 
     Result:
-      B lymphoma cells highlighted as CellExLink.
+      B lymphoma cells highlighted as CellDN.
     """
     sorted_annotations = sorted(
         annotations,
@@ -254,11 +254,11 @@ def make_legend():
     ">
         <div>
             <span style="
-                background-color: {CELLEXLINK_COLOR};
+                background-color: {CELLDN_COLOR};
                 padding: 3px 14px;
                 border-radius: 4px;
             ">&nbsp;</span>
-            CellExLink cell_type
+            CellDN cell_type
         </div>
 
         <div>
@@ -273,7 +273,7 @@ def make_legend():
     """
 
 
-def render_cellexlink_bioc(bioc_data):
+def render_celldn_bioc(bioc_data):
     """Render a BioC JSON dictionary as notebook HTML."""
 
     html_blocks = []
@@ -334,14 +334,14 @@ def render_cellexlink_bioc(bioc_data):
 
     return HTML(full_html)
 
-def render_cellexlink_bioc_file(path):
+def render_celldn_bioc_file(path):
     """Load a BioC JSON file from disk and render it as notebook HTML."""
 
-    return render_cellexlink_bioc(load_bioc_json(path))
+    return render_celldn_bioc(load_bioc_json(path))
 
 
 __all__ = [
     "load_bioc_json",
-    "render_cellexlink_bioc",
-    "render_cellexlink_bioc_file",
+    "render_celldn_bioc",
+    "render_celldn_bioc_file",
 ]

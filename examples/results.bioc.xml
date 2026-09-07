@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<collection><infon key="CellExLink_normalization_model">CellExLink-Sapbert</infon><infon key="CellExLink_normalization_unique_mentions">41</infon><source>CellExLink</source><date>20260731</date><key>merged BioC collection</key>
+<collection><infon key="CellDN_normalization_model">CellDN-Sapbert</infon><infon key="CellDN_normalization_unique_mentions">41</infon><source>CellDN</source><date>20260731</date><key>merged BioC collection</key>
 <document>
     <id>31261512</id>
     <passage>

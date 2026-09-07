@@ -1,4 +1,4 @@
-"""Plural normalization helpers used by CellExLink NEN."""
+"""Plural normalization helpers used by CellDN NEN."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ _TOKEN_FINDER = re.compile(r"[^\W_]+|[^\w\s]|_|,", re.UNICODE)
 
 
 def split_tokens(value: object) -> list[str]:
-    """Split text into the original CellExLink token representation."""
+    """Split text into the original CellDN token representation."""
 
     return _TOKEN_FINDER.findall(str(value))
 

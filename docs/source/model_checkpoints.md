@@ -1,6 +1,6 @@
 # Model checkpoints and resources
 
-CellExLink uses two model checkpoints and a small set of packaged resources. The checkpoints are downloaded from Hugging Face or loaded from local folders; the resource files are distributed with the Python package.
+CellDN uses two model checkpoints and a small set of packaged resources. The checkpoints are downloaded from Hugging Face or loaded from local folders; the resource files are distributed with the Python package.
 
 ---
 
@@ -11,19 +11,21 @@ CellExLink uses two model checkpoints and a small set of packaged resources. The
 | NER | [`almire/CellExLink-bioformer16L`](https://huggingface.co/almire/CellExLink-bioformer16L) | Detects cell-type mention spans in text. |
 | NEN | [`almire/CellExLink-Sapbert`](https://huggingface.co/almire/CellExLink-Sapbert) | Links recognized or user-provided mentions to Cell Ontology identifiers. |
 
-The same model IDs can be used directly as Hugging Face model names or downloaded to local directories before running CellExLink.
+> **Naming note:** The Hugging Face repository IDs retain the `CellExLink-*` names under which the checkpoints were published with the companion methodological study. These are external checkpoint identifiers; the installable package, Python namespace, and command-line interface are named CellDN, `celldn`, and `celldn`, respectively.
+
+The same model IDs can be used directly as Hugging Face model names or downloaded to local directories before running CellDN.
 
 ---
 
 ## Recommended download method
 
-Most users do not need to write any Python code to download the models. After installing CellExLink, use the built-in command-line interface:
+Most users do not need to write any Python code to download the models. After installing CellDN, use the built-in command-line interface:
 
 ```bash
-cellexlink download-models --output-dir models
+celldn download-models --output-dir models
 ```
 
-This command is implemented directly in the installed `cellexlink` CLI. It downloads both default checkpoints from Hugging Face and writes a small `models.json` manifest describing the local model paths.
+This command is implemented directly in the installed `celldn` CLI. It downloads both default checkpoints from Hugging Face and writes a small `models.json` manifest describing the local model paths.
 
 This creates the local model directory used in the examples:
 
@@ -71,10 +73,10 @@ huggingface-cli download almire/CellExLink-Sapbert \
 
 ## Packaged resources
 
-CellExLink also uses smaller resource files for normalization and abbreviation handling:
+CellDN also uses smaller resource files for normalization and abbreviation handling:
 
 ```text
-src/cellexlink/resources/
+src/celldn/resources/
 ├── abbreviations.tsv
 └── cell_ontology_v2025-12-17.jsonl
 ```

@@ -1,4 +1,4 @@
-"""Cell Ontology alias loading for CellExLink NEN.
+"""Cell Ontology alias loading for CellDN NEN.
 """
 
 from __future__ import annotations
@@ -38,7 +38,7 @@ class ConceptMetadata:
 def default_ontology_path() -> Path:
     """Return the packaged Cell Ontology JSONL resource path."""
 
-    candidate = resources.files("cellexlink").joinpath(
+    candidate = resources.files("celldn").joinpath(
         "resources", DEFAULT_ONTOLOGY_FILENAME
     )
     return Path(str(candidate))

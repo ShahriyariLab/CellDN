@@ -1,4 +1,4 @@
-"""Fetch PubMed/PMC/Europe PMC content as BioC for CellExLink.
+"""Fetch PubMed/PMC/Europe PMC content as BioC for CellDN.
 
 The prediction pipeline is intentionally separated from retrieval.  These
 helpers only download/convert literature text into BioC XML/JSON;
@@ -16,7 +16,7 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 from xml.etree import ElementTree as ET
 
-from cellexlink.io import (
+from celldn.io import (
     BioCCollection,
     BioCDocument,
     BioCPassage,
@@ -142,7 +142,7 @@ def fetch_pubmed_bioc(
     if collections:
         merged = merge_bioc_collections(collections)
     else:
-        merged = BioCCollection(source=f"CellExLink retrieval: {source}", key="empty retrieval result")
+        merged = BioCCollection(source=f"CellDN retrieval: {source}", key="empty retrieval result")
     write_bioc_collection(merged, output, output_format=fmt)
     return FetchReport(
         output_path=output,
@@ -302,7 +302,7 @@ def _local_name(tag: str) -> str:
 def _urlopen_text(url: str, *, timeout: int, opener: UrlOpener | None = None) -> str:
     """Fetch a URL and return its decoded text payload."""
 
-    request = Request(url, headers={"User-Agent": "CellExLink/0.2 (+https://github.com/ShahriyariLab/CellExLink)"})
+    request = Request(url, headers={"User-Agent": "CellDN/0.2 (+https://github.com/ShahriyariLab/CellDN)"})
     try:
         response = opener(request, timeout) if opener is not None else urlopen(request, timeout=timeout)  # noqa: S310
         with response:

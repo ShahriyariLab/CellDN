@@ -4,17 +4,17 @@ from __future__ import annotations
 
 
 def test_public_api_imports() -> None:
-    import cellexlink
+    import celldn
 
-    assert hasattr(cellexlink, "CellExLinkPipeline")
-    assert hasattr(cellexlink, "ExtractionResult")
-    assert not hasattr(cellexlink, "fetch_pubmed_bioc")
+    assert hasattr(celldn, "CellDNPipeline")
+    assert hasattr(celldn, "ExtractionResult")
+    assert not hasattr(celldn, "fetch_pubmed_bioc")
 
 
 def test_pipeline_exposes_the_compact_workflow_api() -> None:
-    from cellexlink import CellExLinkPipeline
+    from celldn import CellDNPipeline
 
-    pipe = CellExLinkPipeline.from_pretrained(
+    pipe = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner",
         nen_model="dummy-nen",
     )
@@ -35,7 +35,7 @@ def test_pipeline_exposes_the_compact_workflow_api() -> None:
 
 
 def test_result_objects_have_dict_output() -> None:
-    from cellexlink import ExtractionResult
+    from celldn import ExtractionResult
 
     result = ExtractionResult(
         document_id="doc0",

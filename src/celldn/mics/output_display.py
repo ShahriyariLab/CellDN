@@ -1,4 +1,4 @@
-"""Render CellExLink annotations as highlighted HTML in notebook environments.
+"""Render CellDN annotations as highlighted HTML in notebook environments.
 
 This module supports two common notebook workflows:
 

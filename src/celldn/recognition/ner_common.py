@@ -1,4 +1,4 @@
-"""Shared preprocessing and reconstruction helpers for CellExLink NER.
+"""Shared preprocessing and reconstruction helpers for CellDN NER.
 
 This module contains the reusable pieces of the NER runtime: dataset loading,
 column inference, tokenizer-based preprocessing with overflow windows, Trainer

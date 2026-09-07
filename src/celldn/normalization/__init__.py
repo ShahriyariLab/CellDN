@@ -1,4 +1,4 @@
-"""CellExLink normalization public API."""
+"""CellDN normalization public API."""
 
 from .linker import (
     AMBIGUOUS_TOPN,

@@ -3,14 +3,14 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from cellexlink.io import (
+from celldn.io import (
     collection_summary,
     convert_bioc_file,
     read_bioc_collection,
     read_bioc_annotations,
     write_bioc_collection,
 )
-from cellexlink.pipeline import CellExLinkPipeline
+from celldn.pipeline import CellDNPipeline
 
 
 def test_bioc_json_round_trip(tmp_path: Path) -> None:
@@ -89,7 +89,7 @@ def test_pipeline_prediction_reader_accepts_bioc_json(tmp_path: Path) -> None:
         encoding="utf-8",
     )
 
-    results = CellExLinkPipeline.read_predictions_from_bioc(bioc_json)
+    results = CellDNPipeline.read_predictions_from_bioc(bioc_json)
     assert results[0].identifier == "CL:0000236"
     assert results[0].label == "B cell"
     assert results[0].score == 0.95

@@ -1,5 +1,5 @@
 """
-Recognition module for CellExLink.
+Recognition module for CellDN.
 
 This subpackage contains the cell-type named entity recognition (NER)
 component used before Cell Ontology normalization.

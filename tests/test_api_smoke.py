@@ -1,4 +1,4 @@
-"""Model-free smoke tests for the CellExLink end-to-end pipeline."""
+"""Model-free smoke tests for the CellDN end-to-end pipeline."""
 
 from __future__ import annotations
 
@@ -24,7 +24,7 @@ def _install_fake_model_modules(
     normalizer_call: dict[str, object] | None = None,
 ) -> None:
     """Install fake recognition/normalization modules so tests need no models."""
-    fake_recognition_predict = types.ModuleType("cellexlink.recognition.predict")
+    fake_recognition_predict = types.ModuleType("celldn.recognition.predict")
 
     def fake_predict_ner(
         *,
@@ -120,9 +120,9 @@ def _install_fake_model_modules(
         return 0
 
     fake_recognition_predict.predict_ner = fake_predict_ner
-    monkeypatch.setitem(sys.modules, "cellexlink.recognition.predict", fake_recognition_predict)
+    monkeypatch.setitem(sys.modules, "celldn.recognition.predict", fake_recognition_predict)
 
-    fake_normalization_linker = types.ModuleType("cellexlink.normalization.linker")
+    fake_normalization_linker = types.ModuleType("celldn.normalization.linker")
 
     def fake_normalize_collection(collection, **kwargs):
         if normalizer_call is not None:
@@ -131,8 +131,8 @@ def _install_fake_model_modules(
         for document in collection.documents:
             for passage in document.passages:
                 for annotation in passage.annotations:
-                    annotation.infons["CellExLink-Sapbert_id_0"] = "CL:0000077"
-                    annotation.infons["CellExLink-Sapbert_identifier_name_0"] = "mesothelial cell"
+                    annotation.infons["CellDN-Sapbert_id_0"] = "CL:0000077"
+                    annotation.infons["CellDN-Sapbert_identifier_name_0"] = "mesothelial cell"
         return collection
 
     class _DummyNormalizationType:
@@ -150,18 +150,18 @@ def _install_fake_model_modules(
     fake_normalization_linker.NormalizationResult = _DummyNormalizationType
     fake_normalization_linker.normalize_bioc = fake_normalize_collection
     fake_normalization_linker.normalize_collection = fake_normalize_collection
-    monkeypatch.setitem(sys.modules, "cellexlink.normalization.linker", fake_normalization_linker)
+    monkeypatch.setitem(sys.modules, "celldn.normalization.linker", fake_normalization_linker)
 
 
 def test_run_text_end_to_end_smoke_without_loading_models(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink import CellExLinkPipeline
+    from celldn import CellDNPipeline
 
     _install_fake_model_modules(monkeypatch)
 
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -189,11 +189,11 @@ def test_run_text_omits_document_id_when_not_supplied(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink import CellExLinkPipeline
+    from celldn import CellDNPipeline
 
     _install_fake_model_modules(monkeypatch)
 
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -214,12 +214,12 @@ def test_pipeline_passes_verbose_flag_to_predictor(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink import CellExLinkPipeline
+    from celldn import CellDNPipeline
 
     predictor_call: dict[str, object] = {}
     _install_fake_model_modules(monkeypatch, predictor_call=predictor_call)
 
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -239,8 +239,8 @@ def test_pipeline_passes_verbose_flag_to_normalizer(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink import CellExLinkPipeline
-    from cellexlink.io import write_text_as_bioc_xml
+    from celldn import CellDNPipeline
+    from celldn.io import write_text_as_bioc_xml
 
     normalizer_call: dict[str, object] = {}
     _install_fake_model_modules(monkeypatch, normalizer_call=normalizer_call)
@@ -253,7 +253,7 @@ def test_pipeline_passes_verbose_flag_to_normalizer(
         document_id="doc-bioc-smoke",
     )
 
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -276,8 +276,8 @@ def test_run_bioc_end_to_end_smoke_without_loading_models(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink import CellExLinkPipeline
-    from cellexlink.io import write_text_as_bioc_xml
+    from celldn import CellDNPipeline
+    from celldn.io import write_text_as_bioc_xml
 
     _install_fake_model_modules(monkeypatch)
 
@@ -290,7 +290,7 @@ def test_run_bioc_end_to_end_smoke_without_loading_models(
         document_id="doc-bioc-smoke",
     )
 
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -318,9 +318,9 @@ def test_run_bioc_end_to_end_smoke_without_loading_models(
 
 
 def test_run_bioc_raises_for_missing_input(tmp_path: Path) -> None:
-    from cellexlink import CellExLinkPipeline
+    from celldn import CellDNPipeline
 
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -337,8 +337,8 @@ def test_run_bioc_generic_json_uses_shared_collection_flow(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink import CellExLinkPipeline
-    from cellexlink.io import read_bioc_collection
+    from celldn import CellDNPipeline
+    from celldn.io import read_bioc_collection
 
     _install_fake_model_modules(monkeypatch)
 
@@ -363,7 +363,7 @@ def test_run_bioc_generic_json_uses_shared_collection_flow(
         encoding="utf-8",
     )
 
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -389,7 +389,7 @@ def test_run_bioc_generic_json_uses_shared_collection_flow(
         and annotation.infons.get("type") == "cell_type"
         and annotation.infons.get("identifier") == "CL:0000077"
         and annotation.infons.get("label") == "mesothelial cell"
-        and "CellExLink-Sapbert_id_0" not in annotation.infons
+        and "CellDN-Sapbert_id_0" not in annotation.infons
         for annotation in annotations
     )
 
@@ -398,7 +398,7 @@ def test_normalize_bioc_accepts_bioc_json_input(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink.io import (
+    from celldn.io import (
         BioCAnnotation,
         BioCCollection,
         BioCDocument,
@@ -407,7 +407,7 @@ def test_normalize_bioc_accepts_bioc_json_input(
         read_bioc_collection,
         write_bioc_collection,
     )
-    from cellexlink.normalization import linker
+    from celldn.normalization import linker
 
     input_json = tmp_path / "annotated.bioc.json"
     output_xml = tmp_path / "normalized.xml"
@@ -443,8 +443,8 @@ def test_normalize_bioc_accepts_bioc_json_input(
         for document in collection.documents:
             for passage in document.passages:
                 for annotation in passage.annotations:
-                    annotation.infons["CellExLink-Sapbert_id_0"] = "CL:0000077"
-                    annotation.infons["CellExLink-Sapbert_identifier_name_0"] = "mesothelial cell"
+                    annotation.infons["CellDN-Sapbert_id_0"] = "CL:0000077"
+                    annotation.infons["CellDN-Sapbert_identifier_name_0"] = "mesothelial cell"
         return collection
 
     monkeypatch.setattr(linker, "normalize_collection", fake_normalize_collection)
@@ -459,15 +459,15 @@ def test_normalize_bioc_accepts_bioc_json_input(
 
     assert len(annotations) == 1
     assert annotations[0].text == "mesothelial cell"
-    assert annotations[0].infons["CellExLink-Sapbert_id_0"] == "CL:0000077"
+    assert annotations[0].infons["CellDN-Sapbert_id_0"] == "CL:0000077"
 
 
 def test_pipeline_run_bioc_nen_accepts_bioc_json_input(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink import CellExLinkPipeline
-    from cellexlink.io import (
+    from celldn import CellDNPipeline
+    from celldn.io import (
         BioCAnnotation,
         BioCCollection,
         BioCDocument,
@@ -477,19 +477,19 @@ def test_pipeline_run_bioc_nen_accepts_bioc_json_input(
         write_bioc_collection,
     )
 
-    fake_normalization_linker = types.ModuleType("cellexlink.normalization.linker")
+    fake_normalization_linker = types.ModuleType("celldn.normalization.linker")
 
     def fake_normalize_collection(collection, **kwargs):
         del kwargs
         for document in collection.documents:
             for passage in document.passages:
                 for annotation in passage.annotations:
-                    annotation.infons["CellExLink-Sapbert_id_0"] = "CL:0000077"
-                    annotation.infons["CellExLink-Sapbert_identifier_name_0"] = "mesothelial cell"
+                    annotation.infons["CellDN-Sapbert_id_0"] = "CL:0000077"
+                    annotation.infons["CellDN-Sapbert_identifier_name_0"] = "mesothelial cell"
         return collection
 
     fake_normalization_linker.normalize_collection = fake_normalize_collection
-    monkeypatch.setitem(sys.modules, "cellexlink.normalization.linker", fake_normalization_linker)
+    monkeypatch.setitem(sys.modules, "celldn.normalization.linker", fake_normalization_linker)
 
     input_json = tmp_path / "annotated.bioc.json"
     output_xml = tmp_path / "normalized.xml"
@@ -519,7 +519,7 @@ def test_pipeline_run_bioc_nen_accepts_bioc_json_input(
     )
     write_bioc_collection(collection, input_json, output_format="bioc-json")
 
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
     )
@@ -543,7 +543,7 @@ def test_pipeline_run_bioc_nen_accepts_bioc_json_input(
     }
 
 def test_write_predictions_json_groups_annotations_by_document(tmp_path: Path) -> None:
-    from cellexlink import ExtractionResult, write_predictions_json
+    from celldn import ExtractionResult, write_predictions_json
 
     output_path = tmp_path / "predictions.json"
     predictions = [
@@ -591,7 +591,7 @@ def test_write_predictions_json_groups_annotations_by_document(tmp_path: Path) -
 
 
 def test_write_predictions_json_omits_document_id_when_missing(tmp_path: Path) -> None:
-    from cellexlink import ExtractionResult, write_predictions_json
+    from celldn import ExtractionResult, write_predictions_json
 
     output_path = tmp_path / "predictions.json"
     predictions = [
@@ -621,7 +621,7 @@ def test_write_predictions_json_omits_document_id_when_missing(tmp_path: Path) -
 
 
 def test_write_predictions_json_strips_candidate_scores_and_sources(tmp_path: Path) -> None:
-    from cellexlink import write_predictions_json
+    from celldn import write_predictions_json
 
     output_path = tmp_path / "predictions.json"
     predictions = [
@@ -646,10 +646,10 @@ def test_write_predictions_json_strips_candidate_scores_and_sources(tmp_path: Pa
                 }
             ],
             "infons": {
-                "CellExLink-Sapbert_confidence_score_0": "0.99",
-                "CellExLink-Sapbert_embedding_score_0": "-0.02",
-                "CellExLink-Sapbert_match_source": "model_normal",
-                "CellExLink-Sapbert_id_0": "CL:0000077",
+                "CellDN-Sapbert_confidence_score_0": "0.99",
+                "CellDN-Sapbert_embedding_score_0": "-0.02",
+                "CellDN-Sapbert_match_source": "model_normal",
+                "CellDN-Sapbert_id_0": "CL:0000077",
             },
         }
     ]
@@ -672,7 +672,7 @@ def test_write_predictions_json_strips_candidate_scores_and_sources(tmp_path: Pa
         }
     ]
     assert annotation["infons"] == {
-        "CellExLink-Sapbert_id_0": "CL:0000077",
+        "CellDN-Sapbert_id_0": "CL:0000077",
     }
 
 
@@ -680,10 +680,10 @@ def test_run_text_accepts_case_insensitive_ner_task(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink import CellExLinkPipeline, RecognizedMention
+    from celldn import CellDNPipeline, RecognizedMention
 
     _install_fake_model_modules(monkeypatch)
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -700,9 +700,9 @@ def test_run_text_accepts_case_insensitive_ner_task(
 
 
 def test_run_text_rejects_nen_without_spans(tmp_path: Path) -> None:
-    from cellexlink import CellExLinkPipeline
+    from celldn import CellDNPipeline
 
-    pipeline = CellExLinkPipeline.from_pretrained(output_dir=tmp_path / "work")
+    pipeline = CellDNPipeline.from_pretrained(output_dir=tmp_path / "work")
     with pytest.raises(ValueError, match="NEN requires existing mention spans"):
         pipeline.run_text("T cells were detected.", task="nen")
 
@@ -711,8 +711,8 @@ def test_run_bioc_chunks_passages_but_uses_full_document_context(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink import CellExLinkPipeline
-    from cellexlink.io import (
+    from celldn import CellDNPipeline
+    from celldn.io import (
         BioCCollection,
         BioCDocument,
         BioCPassage,
@@ -738,7 +738,7 @@ def test_run_bioc_chunks_passages_but_uses_full_document_context(
     )
     write_bioc_collection(collection, input_xml, output_format="bioc-xml")
 
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -769,7 +769,7 @@ def test_run_files_writes_one_result_per_input(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink import CellExLinkPipeline
+    from celldn import CellDNPipeline
 
     _install_fake_model_modules(monkeypatch)
     inputs = tmp_path / "inputs"
@@ -783,7 +783,7 @@ def test_run_files_writes_one_result_per_input(
         encoding="utf-8",
     )
 
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -805,9 +805,9 @@ def test_run_files_writes_one_result_per_input(
 
 
 def test_run_files_rejects_legacy_chunk_keywords(tmp_path: Path) -> None:
-    from cellexlink import CellExLinkPipeline
+    from celldn import CellDNPipeline
 
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -825,16 +825,16 @@ def test_run_pmids_chunks_identifiers_and_merges_results(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    from cellexlink import CellExLinkPipeline
-    from cellexlink.io import (
+    from celldn import CellDNPipeline
+    from celldn.io import (
         BioCCollection,
         BioCDocument,
         BioCPassage,
         read_bioc_collection,
         write_bioc_collection,
     )
-    from cellexlink.retrieval import FetchReport
-    import cellexlink.retrieval as retrieval
+    from celldn.retrieval import FetchReport
+    import celldn.retrieval as retrieval
 
     _install_fake_model_modules(monkeypatch)
     fetch_calls: list[list[str]] = []
@@ -886,7 +886,7 @@ def test_run_pmids_chunks_identifiers_and_merges_results(
 
     output_xml = tmp_path / "pmids.xml"
     intermediate_xml = tmp_path / "retrieved.xml"
-    pipeline = CellExLinkPipeline.from_pretrained(
+    pipeline = CellDNPipeline.from_pretrained(
         ner_model="dummy-ner-model",
         nen_model="dummy-nen-model",
         output_dir=tmp_path / "work",
@@ -918,7 +918,7 @@ def test_run_pmids_chunks_identifiers_and_merges_results(
         "T5",
     ]
     assert all(
-        "__cellexlink_generated_annotation" not in annotation.infons
+        "__celldn_generated_annotation" not in annotation.infons
         for annotation in generated
     )
     assert all(

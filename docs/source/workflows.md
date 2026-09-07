@@ -1,6 +1,6 @@
 # Workflow overview
 
-CellExLink uses one pipeline class for four public workflows.
+CellDN uses one pipeline class for four public workflows.
 
 | Workflow | Python API | CLI | Input |
 |---|---|---|---|

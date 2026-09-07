@@ -1,4 +1,4 @@
-"""High-level Python API for CellExLink workflows."""
+"""High-level Python API for CellDN workflows."""
 
 from __future__ import annotations
 
@@ -22,8 +22,8 @@ DEFAULT_BIOC_CHUNK_SIZE = 128
 DEFAULT_FILE_CHUNK_SIZE = 32
 DEFAULT_PMID_CHUNK_SIZE = 100
 
-_INTERNAL_DOCUMENT_KEY = "__cellexlink_internal_document_key"
-_GENERATED_ANNOTATION_KEY = "__cellexlink_generated_annotation"
+_INTERNAL_DOCUMENT_KEY = "__celldn_internal_document_key"
+_GENERATED_ANNOTATION_KEY = "__celldn_generated_annotation"
 
 
 def _compact_dict(obj: Any) -> dict[str, Any]:
@@ -66,7 +66,7 @@ class RecognizedMention:
 
 @dataclass(slots=True)
 class ExtractionResult:
-    """One end-to-end CellExLink prediction."""
+    """One end-to-end CellDN prediction."""
 
     document_id: str | None
     passage_index: int
@@ -147,8 +147,8 @@ class _CollectionRun:
 
 
 @dataclass(slots=True)
-class CellExLinkPipeline:
-    """High-level CellExLink pipeline.
+class CellDNPipeline:
+    """High-level CellDN pipeline.
 
     Public workflows are :meth:`run_text`, :meth:`run_bioc`,
     :meth:`run_files`, and :meth:`run_pmids`. Model components load lazily on
@@ -161,7 +161,7 @@ class CellExLinkPipeline:
     ontology_path: PathLike | None = None
     abbreviations_path: PathLike | None = None
     disable_abbreviations: bool = False
-    output_dir: PathLike = "cellexlink_outputs"
+    output_dir: PathLike = "celldn_outputs"
     warmup_runs: int = 0
     batch_size: int = 16
     fp16: bool = False
@@ -193,7 +193,7 @@ class CellExLinkPipeline:
         ner_model: PathLike = DEFAULT_NER_MODEL,
         nen_model: PathLike = DEFAULT_NEN_MODEL,
         **kwargs: Any,
-    ) -> "CellExLinkPipeline":
+    ) -> "CellDNPipeline":
         """Create a pipeline from local paths or Hugging Face model IDs."""
 
         return cls(ner_model=ner_model, nen_model=nen_model, **kwargs)
@@ -217,7 +217,7 @@ class CellExLinkPipeline:
     def _get_ner_predictor(self) -> Any | None:
         """Return the retained NER predictor, creating it on first use."""
 
-        module = importlib.import_module("cellexlink.recognition.predict")
+        module = importlib.import_module("celldn.recognition.predict")
         predictor_class = getattr(module, "NERPredictor", None)
         if predictor_class is None:
             return None
@@ -244,13 +244,13 @@ class CellExLinkPipeline:
     def _get_nen_linker(self) -> Any | None:
         """Return the retained NEN linker and static ontology resources."""
 
-        module = importlib.import_module("cellexlink.normalization.linker")
+        module = importlib.import_module("celldn.normalization.linker")
         linker_class = getattr(module, "CellOntologyLinker", None)
         if linker_class is None:
             return None
 
-        from cellexlink.normalization.abbreviations import default_abbreviations_path
-        from cellexlink.normalization.ontology import default_ontology_path
+        from celldn.normalization.abbreviations import default_abbreviations_path
+        from celldn.normalization.ontology import default_ontology_path
 
         cache_key = self._current_nen_cache_key()
         with self._prepare_lock:
@@ -284,8 +284,8 @@ class CellExLinkPipeline:
     ) -> Any:
         """Run NER on an in-memory BioC collection."""
 
-        from cellexlink.io import iter_collection_passage_records
-        from cellexlink.recognition.bioc import (
+        from celldn.io import iter_collection_passage_records
+        from celldn.recognition.bioc import (
             apply_prediction_entries_to_collection,
             write_passage_records_json,
         )
@@ -307,13 +307,13 @@ class CellExLinkPipeline:
         output_dir = Path(output_dir)
         output_dir.mkdir(parents=True, exist_ok=True)
 
-        with tempfile.TemporaryDirectory(prefix="cellexlink_collection_ner_") as tmp:
+        with tempfile.TemporaryDirectory(prefix="celldn_collection_ner_") as tmp:
             test_file = Path(tmp) / "test.hf.json"
             write_passage_records_json(records, test_file)
             predictor = self._get_ner_predictor()
             if predictor is None:
                 prediction_module = importlib.import_module(
-                    "cellexlink.recognition.predict"
+                    "celldn.recognition.predict"
                 )
                 result = prediction_module.predict_ner(
                     model_path=self.ner_model,
@@ -332,7 +332,7 @@ class CellExLinkPipeline:
                 )
             if isinstance(result, int) and result != 0:
                 raise RuntimeError(
-                    "CellExLink NER failed with exit code "
+                    "CellDN NER failed with exit code "
                     f"{result}. Check the logs in: {output_dir}"
                 )
             predictions_path = output_dir / "predictions.json"
@@ -360,11 +360,11 @@ class CellExLinkPipeline:
         """Run NEN while sharing static resources and refreshing context."""
 
         normalization_module = importlib.import_module(
-            "cellexlink.normalization.linker"
+            "celldn.normalization.linker"
         )
         normalize_collection = normalization_module.normalize_collection
 
-        show_status("Running CellExLink normalization...", verbose=self.verbose)
+        show_status("Running CellDN normalization...", verbose=self.verbose)
         configure_external_runtime(verbose=self.verbose)
         kwargs: dict[str, Any] = {
             "collection": deepcopy(collection),
@@ -396,7 +396,7 @@ class CellExLinkPipeline:
     ) -> _CollectionRun:
         """Run one task on an in-memory collection without final serialization."""
 
-        from cellexlink.io import merge_annotations_into_collection
+        from celldn.io import merge_annotations_into_collection
 
         resolved_task = _canonical_task(task)
         run_dir = Path(run_dir)
@@ -451,7 +451,7 @@ class CellExLinkPipeline:
     ) -> Any:
         """Process one complete collection and optionally finalize annotation IDs."""
 
-        from cellexlink.io import write_bioc_collection
+        from celldn.io import write_bioc_collection
 
         run = self._process_collection(
             input_collection,
@@ -489,7 +489,7 @@ class CellExLinkPipeline:
         if chunk_size < 1:
             raise ValueError("chunk_size must be >= 1")
 
-        from cellexlink.io import write_bioc_collection
+        from celldn.io import write_bioc_collection
 
         resolved_task = _canonical_task(task)
         passage_refs = [
@@ -508,7 +508,7 @@ class CellExLinkPipeline:
             )
 
         document_keys = [
-            f"__cellexlink_document_{index:08d}"
+            f"__celldn_document_{index:08d}"
             for index in range(len(input_collection.documents))
         ]
         document_context = _document_context_by_key(
@@ -573,7 +573,7 @@ class CellExLinkPipeline:
 
         if resolved_task in {"nen", "end-to-end"}:
             result_collection.infons[
-                "CellExLink_normalization_unique_mentions"
+                "CellDN_normalization_unique_mentions"
             ] = str(len(unique_mentions))
 
         if finalize_generated_annotations:
@@ -614,11 +614,11 @@ class CellExLinkPipeline:
         if not text.strip():
             return []
 
-        from cellexlink.io import BioCCollection, BioCDocument, BioCPassage
+        from celldn.io import BioCCollection, BioCDocument, BioCPassage
 
         internal_document_id = document_id or "doc0"
         collection = BioCCollection(
-            source="CellExLink",
+            source="CellDN",
             key="plain text",
             documents=[
                 BioCDocument(
@@ -667,7 +667,7 @@ class CellExLinkPipeline:
         available to NEN for document-specific abbreviation resolution.
         """
 
-        from cellexlink.io import (
+        from celldn.io import (
             canonical_bioc_format,
             output_format_from_path,
             read_bioc_collection,
@@ -768,7 +768,7 @@ class CellExLinkPipeline:
             start=1,
         ):
             with tempfile.TemporaryDirectory(
-                prefix=f"cellexlink_batch_{chunk_number:05d}_"
+                prefix=f"celldn_batch_{chunk_number:05d}_"
             ) as tmp:
                 outputs.extend(
                     self._run_file_chunk(
@@ -795,7 +795,7 @@ class CellExLinkPipeline:
     ) -> list[Path]:
         """Load, combine, process, and split one file chunk."""
 
-        from cellexlink.io import (
+        from celldn.io import (
             BioCCollection,
             BioCDocument,
             BioCPassage,
@@ -804,7 +804,7 @@ class CellExLinkPipeline:
         )
 
         combined = BioCCollection(
-            source="CellExLink",
+            source="CellDN",
             key="cell-type-extraction",
         )
         loaded_sources: list[_LoadedBatchSource] = []
@@ -813,7 +813,7 @@ class CellExLinkPipeline:
             if plan.is_text:
                 text = plan.input_path.read_text(encoding="utf-8")
                 original_collection = BioCCollection(
-                    source="CellExLink",
+                    source="CellDN",
                     key="cell-type-extraction",
                     documents=[
                         BioCDocument(
@@ -836,7 +836,7 @@ class CellExLinkPipeline:
                     original_collection.documents
                 ):
                     internal_id = (
-                        f"__cellexlink_batch_{plan.index:08d}_{document_index:08d}"
+                        f"__celldn_batch_{plan.index:08d}_{document_index:08d}"
                     )
                     document = deepcopy(original_document)
                     document.id = internal_id
@@ -894,7 +894,7 @@ class CellExLinkPipeline:
             )
             if task in {"nen", "end-to-end"}:
                 result_collection.infons[
-                    "CellExLink_normalization_unique_mentions"
+                    "CellDN_normalization_unique_mentions"
                 ] = str(
                     _count_unique_normalization_mentions(
                         result_collection,
@@ -960,7 +960,7 @@ class CellExLinkPipeline:
         order.
         """
 
-        from cellexlink.io import (
+        from celldn.io import (
             canonical_bioc_format,
             clean_pmid_list,
             merge_bioc_files,
@@ -968,7 +968,7 @@ class CellExLinkPipeline:
             read_bioc_collection,
             write_bioc_collection,
         )
-        from cellexlink.retrieval import fetch_pubmed_bioc
+        from celldn.retrieval import fetch_pubmed_bioc
 
         resolved_task = _canonical_task(task)
         id_list = clean_pmid_list(ids)
@@ -997,7 +997,7 @@ class CellExLinkPipeline:
         )
         base_run_dir = Path(output_dir or self.output_dir) / "pmids"
 
-        with tempfile.TemporaryDirectory(prefix="cellexlink_pmids_") as tmp:
+        with tempfile.TemporaryDirectory(prefix="celldn_pmids_") as tmp:
             tmp_dir = Path(tmp)
             retrieved_paths: list[Path] = []
             processed_paths: list[Path] = []
@@ -1081,7 +1081,7 @@ class CellExLinkPipeline:
     ) -> list[RecognizedMention]:
         """Read NER-only predictions from BioC XML/JSON."""
 
-        from cellexlink.io import read_bioc_collection
+        from celldn.io import read_bioc_collection
 
         collection = read_bioc_collection(bioc_path, input_format=input_format)
         return _recognized_mentions_from_collection(collection)
@@ -1094,7 +1094,7 @@ class CellExLinkPipeline:
     ) -> list[ExtractionResult]:
         """Read normalized predictions from BioC XML/JSON."""
 
-        from cellexlink.io import read_bioc_collection
+        from celldn.io import read_bioc_collection
 
         collection = read_bioc_collection(bioc_path, input_format=input_format)
         return _extraction_results_from_collection(collection)
@@ -1144,7 +1144,7 @@ def _build_collection_chunk(
 ) -> tuple[Any, list[_ChunkDocumentMap]]:
     """Copy selected passages into a small collection with unique IDs."""
 
-    from cellexlink.io import BioCCollection, BioCDocument
+    from celldn.io import BioCCollection, BioCDocument
 
     grouped: dict[int, list[int]] = {}
     for ref in passage_refs:
@@ -1266,7 +1266,7 @@ def _count_unique_normalization_mentions(
 def _plural_normalize_text(text: str) -> str:
     """Apply the normalization used to deduplicate NEN inputs."""
 
-    from cellexlink.normalization.stemmer import plural_normalize_text
+    from celldn.normalization.stemmer import plural_normalize_text
 
     return plural_normalize_text(text)
 
@@ -1369,7 +1369,7 @@ def _plan_batch_outputs(
 ) -> list[_BatchPlan]:
     """Choose one collision-safe output path for every input file."""
 
-    from cellexlink.io import canonical_bioc_format, output_format_from_path
+    from celldn.io import canonical_bioc_format, output_format_from_path
 
     output_dir.mkdir(parents=True, exist_ok=True)
     used: set[Path] = set()
@@ -1392,7 +1392,7 @@ def _plan_batch_outputs(
         stem = _known_input_stem(input_path)
         candidate = output_dir / f"{stem}{suffix}"
         if candidate.resolve() in input_files:
-            candidate = output_dir / f"{stem}.cellexlink{suffix}"
+            candidate = output_dir / f"{stem}.celldn{suffix}"
 
         collision_index = 2
         while candidate.resolve() in used or candidate.resolve() in input_files:
@@ -1426,12 +1426,12 @@ def _copy_processing_infons(
     *,
     include_unique_count: bool,
 ) -> None:
-    """Copy stable CellExLink metadata while excluding runtime fields."""
+    """Copy stable CellDN metadata while excluding runtime fields."""
 
     for key, value in getattr(source_collection, "infons", {}).items():
         key_text = str(key)
         key_folded = key_text.casefold()
-        if not key_text.startswith("CellExLink_"):
+        if not key_text.startswith("CellDN_"):
             continue
         if "elapsed" in key_folded or "runtime" in key_folded:
             continue
@@ -1441,7 +1441,7 @@ def _copy_processing_infons(
 
 
 def _remove_runtime_infons_in_collection(collection: Any) -> None:
-    """Remove CellExLink timing metadata from a result collection."""
+    """Remove CellDN timing metadata from a result collection."""
 
     def _remove_from(infons: Any) -> None:
         if not isinstance(infons, dict):
@@ -1449,7 +1449,7 @@ def _remove_runtime_infons_in_collection(collection: Any) -> None:
         for key in list(infons):
             key_text = str(key)
             key_folded = key_text.casefold()
-            if key_text.startswith("CellExLink_") and (
+            if key_text.startswith("CellDN_") and (
                 "elapsed" in key_folded or "runtime" in key_folded
             ):
                 del infons[key]
@@ -1621,7 +1621,7 @@ def _jsonable(item: Any) -> dict[str, Any]:
             for key, value in item.items()
             if value is not None and value != {} and value != []
         }
-    raise TypeError(f"Object is not JSON serializable by CellExLink: {type(item)!r}")
+    raise TypeError(f"Object is not JSON serializable by CellDN: {type(item)!r}")
 
 
 def _annotation_from_prediction(
@@ -1785,7 +1785,7 @@ def write_predictions_json(
     *,
     include_document_metadata: bool = True,
 ) -> Path:
-    """Write CellExLink API results as JSON."""
+    """Write CellDN API results as JSON."""
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1824,7 +1824,7 @@ __all__ = [
     "DEFAULT_NEN_MODEL",
     "DEFAULT_NER_MODEL",
     "DEFAULT_PMID_CHUNK_SIZE",
-    "CellExLinkPipeline",
+    "CellDNPipeline",
     "ExtractionResult",
     "RecognizedMention",
     "write_predictions_json",

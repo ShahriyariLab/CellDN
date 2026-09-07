@@ -189,7 +189,7 @@ def load_encoder(
     device: str | None = None,
     trust_remote_code: bool = False,
 ) -> EncoderHandle:
-    """Load the SapBERT encoder using the original CellExLink decision rule."""
+    """Load the SapBERT encoder using the original CellDN decision rule."""
 
     if device is None:
         import torch
@@ -895,11 +895,11 @@ class CellOntologyLinker:
         return fallback
 
 def resolve_model_label(model_reference: str | Path) -> str:
-    """Return the BioC infon prefix expected by the original evaluator."""
+    """Return a stable CellDN BioC infon prefix for a model reference."""
 
     text = str(model_reference)
     if "sapbert" in text.casefold():
-        return "CellExLink-Sapbert"
+        return "CellDN-Sapbert"
     name = Path(text).name or text
     return name.replace("_", "-")
 
@@ -980,7 +980,7 @@ def normalize_collection(
     ontology resources remain shared.
     """
 
-    collection.infons.pop("CellExLink_normalization_elapsed_seconds", None)
+    collection.infons.pop("CellDN_normalization_elapsed_seconds", None)
     annotation_refs, unique_mentions, local_document_context = _collect_collection_mentions(collection)
     context_by_key = (
         {str(key): str(value) for key, value in document_context.items()}
@@ -1014,8 +1014,8 @@ def normalize_collection(
     # Do not load the encoder for an empty annotation collection.
     if not unique_mentions:
         label = model_label or resolve_model_label(label_reference)
-        collection.infons["CellExLink_normalization_model"] = label
-        collection.infons["CellExLink_normalization_unique_mentions"] = "0"
+        collection.infons["CellDN_normalization_model"] = label
+        collection.infons["CellDN_normalization_unique_mentions"] = "0"
         return collection
 
     # Prepare static resources once, then rebuild only the document-specific
@@ -1044,8 +1044,8 @@ def normalize_collection(
             continue
         annotation.infons.update(_result_infons(result, label=label, topn=topn))
 
-    collection.infons["CellExLink_normalization_model"] = label
-    collection.infons["CellExLink_normalization_unique_mentions"] = str(len(unique_mentions))
+    collection.infons["CellDN_normalization_model"] = label
+    collection.infons["CellDN_normalization_unique_mentions"] = str(len(unique_mentions))
     return collection
 
 
@@ -1174,7 +1174,7 @@ def _is_collection_passage_annotatable(passage: Any) -> bool:
 
 def _collection_document_key(document: Any, passage: Any) -> str:
     key = (
-        document.infons.get("__cellexlink_internal_document_key")
+        document.infons.get("__celldn_internal_document_key")
         or passage.infons.get("article-id_pmid")
         or document.id
         or passage.infons.get("passage_id")

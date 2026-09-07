@@ -1,4 +1,4 @@
-"""Sphinx configuration for CellExLink documentation."""
+"""Sphinx configuration for CellDN documentation."""
 
 from __future__ import annotations
 
@@ -6,17 +6,17 @@ import os
 import sys
 from pathlib import Path
 
-# Make src/cellexlink importable for API documentation later.
+# Make src/celldn importable for API documentation later.
 ROOT = Path(__file__).resolve().parents[2]
 SRC = ROOT / "src"
 sys.path.insert(0, str(SRC))
 
-project = "CellExLink"
-author = "CellExLink contributors"
-copyright = "2026, CellExLink contributors"
+project = "CellDN"
+author = "CellDN contributors"
+copyright = "2026, CellDN contributors"
 
 try:
-    from cellexlink import __version__ as release
+    from celldn import __version__ as release
 except Exception:
     release = "0.1.0"
 
@@ -47,7 +47,7 @@ html_theme_options = {
     "sticky_navigation": True,
 }
 
-html_title = "CellExLink documentation"
+html_title = "CellDN documentation"
 html_static_path: list[str] = []
 
 myst_enable_extensions = [
@@ -59,7 +59,7 @@ myst_enable_extensions = [
 html_context = {
     "display_github": False,
     "github_user": "ShahriyariLab",
-    "github_repo": "CellExLink",
+    "github_repo": "CellDN",
     "github_version": "main",
     "conf_py_path": "/docs/source/",
 }

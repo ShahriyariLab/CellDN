@@ -3,9 +3,9 @@
 ## Create a pipeline
 
 ```python
-from cellexlink import CellExLinkPipeline
+from celldn import CellDNPipeline
 
-pipe = CellExLinkPipeline.from_pretrained(
+pipe = CellDNPipeline.from_pretrained(
     ner_model="models/CellExLink-bioformer16L",
     nen_model="models/CellExLink-Sapbert",
 )
@@ -32,7 +32,7 @@ existing spans and therefore uses structured input.
 Save compact JSON when needed:
 
 ```python
-from cellexlink import write_predictions_json
+from celldn import write_predictions_json
 
 write_predictions_json(end_to_end_results, "text_results.json")
 ```
