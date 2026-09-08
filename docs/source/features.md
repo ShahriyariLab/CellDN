@@ -23,7 +23,7 @@ This page presents CellDN as a capability set.
 - a file list or directory processed in chunks
 - PMID list from a text file
 
-## Content selection
+## Content for selection 
 
 - abstract only
 - full text when available
