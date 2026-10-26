@@ -2,10 +2,11 @@
 
 This page describes the formats that the current CellDN CLI and Python API actually read and write. The main public formats are:
 
-- plain text input for end-to-end extraction
+- plain text
 - PDF files
-- BioC XML input and output for corpus-style processing
-- JSON output for plain-text extraction results
+- PMIDs, PMCID
+- BioC XML/BioC JSON input and output for corpus-style processing
+
 
 
 ## Plain-text input
@@ -30,17 +31,14 @@ celldn predict-text \
 from celldn import CellDNPipeline
 
 pipe = CellDNPipeline.from_pretrained()
-outputs = pipe.run_files("article.pdf", "outputs/")
+outputs = pipe.run_files("first.pdf", "outputs/")
 ```
 
 The equivalent CLI command is:
 
 ```bash
-celldn run-files article.pdf --results-dir outputs/
+celldn run-files first.pdf --results-dir outputs/
 ```
-
-PDF text and glyph geometry are extracted locally from `pdfminer.six` layout
-objects; `pypdf` validates the input and handles PDF encryption checks. 
 
 ## JSON output from plain text
 

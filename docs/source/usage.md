@@ -34,9 +34,11 @@ Supported tasks are `ner`, `nen`, and `end-to-end`.
 
 ### PDF input
 
+Sample files are provided in examples/pdfs/. The examples below assume these files are in your current working directory.
+
 ```python
 outputs = pipe.run_files(
-    "article.pdf",
+    "first.pdf",
     "outputs/",
     task="end-to-end"
     )
@@ -47,7 +49,7 @@ outputs = pipe.run_files(
 ```python
 outputs = pipe.run_files(
     ["first.pdf", "second.pdf"],
-    "outputs/pdfs/",
+    "outputs/",
     task="end-to-end",
     batch_size=32,
     passage_chunk_size=128,
@@ -70,7 +72,7 @@ outputs = pipe.run_files(
 
 ```python
 output = pipe.run_pmids(
-    ["30243656", "PMC6821189"],
+    ["30243656", "PMC2246246"],
     "results.xml",
     text_source="fulltext",
     batch_size=32,

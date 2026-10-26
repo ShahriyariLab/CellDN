@@ -22,11 +22,11 @@ Document-specific abbreviation mappings are rebuilt for every collection or
 processing chunk. Context from one document is therefore not carried into an
 unrelated document.
 
-## Chunking
+
 
 `run_bioc()`, `run_files()`, and `run_pmids()` all use `passage_chunk_size`
 (`--passage-chunk-size` in the CLI) to limit the number of passages processed
-in one inference chunk. The default is `128`.
+in one inference chunk. The default is `128`. `batch_size` (`--batch-size in the CLI`) controls the number of input files processed or publication identifiers.
 
 `run_bioc()` processes a large collection in passage chunks. It still provides
 the retained text of each document to abbreviation resolution.

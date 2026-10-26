@@ -70,11 +70,11 @@ pipe.run_bioc(
 
 ## PDF input
 
-Use `run_files()` for a single PDF, a PDF list, or a PDF directory:
+Use `run_files()` for a single PDF, a PDF list, or a PDF directory. Sample files are provided in examples/pdfs/. The examples below assume these files are in your current working directory.
 
 ```python
 outputs = pipe.run_files(
-    "article.pdf",
+    "first.pdf",
     "outputs/",
     task="end-to-end",
     passage_chunk_size=128,
@@ -84,12 +84,14 @@ outputs = pipe.run_files(
 ## Multiple local files
 
 ```python
+pdf_inputs = ["first.pdf", "second.pdf", "third.pdf"]
+# Alternatively, use a folder containing PDFs:
+# pdf_inputs = "pdfs/"
+
 outputs = pipe.run_files(
-    ["first.pdf", "second.pdf", "third.pdf"],
-    "results/",
+    pdf_inputs,
+    "outputs/",
     task="end-to-end",
-    batch_size=32,
-    passage_chunk_size=128,
 )
 ```
 Every input receives a separate output file.
@@ -115,7 +117,7 @@ then merges them into the requested output file.
 ```python
 pipe.run_text("T cells were detected.", task="ner")
 pipe.run_bioc("corpus.xml", "corpus_results.xml")
-pipe.run_files("article.pdf", "article_results/")
+pipe.run_files("first.pdf", "article_results/")
 pipe.run_pmids(["30243656"], "pmid_results.xml")
 ```
 

@@ -1,6 +1,6 @@
 # CLI workflows
 
-This page collects CellDN workflows from the command-line interface. If you want the cross-interface overview first, see {doc}`workflows`. If you want the Python version of the same ideas, see {doc}`python_api_workflows`.
+This page collects CellDN workflows from the command-line interface. If you want the cross-interface overview first, see {doc}`workflows`. If you want the Python version of the same process, see {doc}`python_api_workflows`.
 
 ## What the CLI covers
 
@@ -43,11 +43,9 @@ mkdir -p outputs
 ```
 
 For `run-files` and `predict-pmid`, `--batch-size` controls the number of files or
-publication identifiers per batch, matching Python's `batch_size` argument.
+publication identifiers per batch.
 `run-bioc`, `run-files`, and `predict-pmid` all use `--passage-chunk-size` to limit
-the passages processed in each chunk, matching Python's `passage_chunk_size`
-argument. The separate `--inference-batch-size` option controls model inference
-batches on prediction commands.
+the passages processed in each chunk. The separate.
 
 ## CLI demonstrations
 
@@ -109,7 +107,6 @@ Use this to show the standard structured-document workflow.
 celldn run-bioc \
   examples/sample_input.xml \
   outputs/sample.end_to_end.xml \
-  --ner-output-xml outputs/sample.intermediate_ner.xml \
   --passage-chunk-size 128 \
   --ner-model models/CellExLink-bioformer16L \
   --nen-model models/CellExLink-Sapbert
@@ -125,9 +122,7 @@ celldn run-bioc \
   outputs/sample_bioc.normalized.json \
   --task end-to-end \
   --input-format bioc-json \
-  --output-format bioc-json \
-  --ner-model models/CellExLink-bioformer16L \
-  --nen-model models/CellExLink-Sapbert
+  --output-format bioc-json
 ```
 
 ### 7. PubTator3 BioC JSON integration
@@ -153,7 +148,7 @@ Notes:
 
 - PubTator3 BioC JSON can be passed directly to `run-bioc`.
 - `--preserve-existing-annotations` keeps the original PubTator3 annotations on retained passages while adding CellDN cell-type results. Excluded passages remain excluded.
-- The flag is optional and also works with `run-files` and `predict-pmid`. Without it, `ner` and `end-to-end` replace existing annotations with CellDN predictions. NEN-only processing continues to normalize supplied cell mentions without adding duplicate originals.
+- The flag is optional and also works with `run-files` and `predict-pmid`. Without it, `ner` and `end-to-end` replace existing annotations with CellDN predictions. 
 - With `pmids=...`, this PubTator3 export is typically title plus abstract content.
 
 ### 8. Generic JSON input from another tool
@@ -178,14 +173,13 @@ Use this to show retrieval followed by CellDN inference.
 celldn predict-pmid \
   --pmid 31261512 \
   --text-source abstract \
-  --output outputs/pmid_31261512.predicted.xml \
-  --ner-model models/CellExLink-bioformer16L \
-  --nen-model models/CellExLink-Sapbert
+  --output outputs/pmid_31261512.predicted.xml
 ```
 
 ### 10. PMID or PMCID full text with abstract fallback
 
 Use this to show full-text mode when a PMC OA or Europe PMC full text is available.
+try `PMC2246246` or `PMC6821189`
 
 ```bash
 celldn predict-pmid \
@@ -255,21 +249,18 @@ reused across all chunks.
 ```bash
 celldn run-files first.pdf \
   --results-dir outputs/ \
-  --task end-to-end \
-  --passage-chunk-size 128 \
-  --ner-model models/CellExLink-bioformer16L \
-  --nen-model models/CellExLink-Sapbert
+  --task end-to-end
 ```
 
 ```bash
-celldn run-files papers/ --results-dir outputs/papers/ \
+celldn run-files papers/ --results-dir outputs/ \
   --batch-size 32 \
   --passage-chunk-size 128 \
   --task end-to-end
 ```
 
 ```bash
-celldn run-files first.pdf second.pdf --results-dir outputs/pdfs/
+celldn run-files first.pdf second.pdf --results-dir outputs/
 ```
 
 Each file receives its own output. 

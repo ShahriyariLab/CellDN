@@ -113,8 +113,13 @@ resources/cell_ontology_v2026-06-08.metadata.json
 from celldn import CellDNPipeline, download_cell_ontology
 
 ontology_path = download_cell_ontology(output_dir="resources")
-
 pipe = CellDNPipeline.from_pretrained(ontology_path=ontology_path)
+
+results = pipe.run_text(
+    "Macrophages were detected.",
+    task="end-to-end",
+)
+print("Cell Ontology version:", results.cl_version)
 ```
 
 ### Version reporting and reproducibility
