@@ -1,0 +1,4 @@
+"The stromal vascular fraction contained mesothelial cells, "
+"smooth muscle cells (SMCs), endothelial cells (ECs), and macrophages. "
+"Mesotheliocytes and SMC clusters formed a separate population."
+"It has been suggested that distinct cell lineages underlie the formation of slow and fast muscle fibers.In colon cancer, activated CD8+ T cells enhance production of necrotic cells by expressing high levels of cytokines like IFN-γ and FasL. Necrotic cells and macrophages release HMGB1 to activate dendritic cells, which leads to activation of T-cells."

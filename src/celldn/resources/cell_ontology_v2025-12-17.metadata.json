@@ -1,0 +1,10 @@
+{
+  "schema": "celldn.cell_ontology_export.v2",
+  "ontology": "CL",
+  "version": "2025-12-17",
+  "source": "CellExLink published JSONL snapshot",
+  "source_url": "https://raw.githubusercontent.com/ShahriyariLab/CellExLink-End-to-End-Cell-Type-Extraction-and-Cell-Ontology-Normalization-from-Biomedical-Text/main/normalization/cell_ontology_v2025-12-17.jsonl",
+  "jsonl_file": "cell_ontology_v2025-12-17.jsonl",
+  "sha256": "ef5e356a40492513e7017e4ea23471a387cdcf5eb360b0023e1b5b2501c8db34",
+  "notes": "Version declared by the published snapshot; the original bundled JSONL bytes are unchanged."
+}
