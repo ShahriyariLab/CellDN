@@ -1,4 +1,4 @@
-"""Command line interface for CellDN software"""
+"""Command line interface for CellDN"""
 
 from __future__ import annotations
 
