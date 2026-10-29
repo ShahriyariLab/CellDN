@@ -70,7 +70,10 @@ pipe.run_bioc(
 
 ## PDF input
 
-Use `run_files()` for a single PDF, a PDF list, or a PDF directory. Sample files are provided in examples/pdfs/. The examples below assume these files are in your current working directory.
+The following example processes a
+list of PDFs and saves a separate result file for each successfully processed input. Sample
+files are provided in examples/pdfs directory in github repo. Replace the example filenames with paths to
+local PDF files. The examples below assume these files are in your current working directory.
 
 ```python
 outputs = pipe.run_files(

@@ -109,17 +109,18 @@ resources/cell_ontology_v2026-06-08.metadata.json
 
 ### Python and notebooks
 
+The following example downloads an updated Cell Ontology resource, selects it for normalization, and reports its version.
+
 ```python
 from celldn import CellDNPipeline, download_cell_ontology
+from celldn.normalization.ontology import get_ontology_version
 
 ontology_path = download_cell_ontology(output_dir="resources")
-pipe = CellDNPipeline.from_pretrained(ontology_path=ontology_path)
-
-results = pipe.run_text(
-    "Macrophages were detected.",
-    task="end-to-end",
+pipe = CellDNPipeline.from_pretrained(
+    ontology_path=ontology_path
 )
-print("Cell Ontology version:", results.cl_version)
+
+print("Cell Ontology version:", get_ontology_version(ontology_path))
 ```
 
 ### Version reporting and reproducibility
